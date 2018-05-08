@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    
+    <declare-styleable name="title_bar">
+        <attr name="titleBarHeight" format="dimension" />
+        <attr name="dividerHeight" format="dimension" />
+        <attr name="backGroundColor" format="color" />
+        <attr name="titleTextColor" format="color" />
+        <attr name="titleText" format="string" />
+        <attr name="rightTextColor" format="color" />
+        <attr name="rightText" format="string" />
+        <attr name="leftTextColor" format="color" />
+        <attr name="dividerColor" format="color" />
+        <attr name="leftText" format="string" />
+        <attr name="isLeftViewShow" format="boolean" />
+        <attr name="isRightViewShow" format="boolean" />
+        <attr name="leftViewBackgroundResource" format="reference" />
+        <attr name="rightViewBackgroundResource" format="reference" />
+    </declare-styleable>
+
+</resources>

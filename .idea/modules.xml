@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/BHMAndroid.iml" filepath="$PROJECT_DIR$/BHMAndroid.iml" />
+      <module fileurl="file://$PROJECT_DIR$/BHMLibrary/BHMLibrary.iml" filepath="$PROJECT_DIR$/BHMLibrary/BHMLibrary.iml" />
+      <module fileurl="file://$PROJECT_DIR$/RxLibrary/RxLibrary.iml" filepath="$PROJECT_DIR$/RxLibrary/RxLibrary.iml" />
+      <module fileurl="file://$PROJECT_DIR$/demo/demo.iml" filepath="$PROJECT_DIR$/demo/demo.iml" />
+    </modules>
+  </component>
+</project>
