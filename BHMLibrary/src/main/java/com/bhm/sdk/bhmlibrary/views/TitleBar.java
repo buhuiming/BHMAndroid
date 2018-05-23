@@ -117,117 +117,131 @@ public class TitleBar extends RelativeLayout {
 		view_divider = (View) findViewById(R.id.view_divider);
 	}
 
-	public void setTitleBarHeight(float height, boolean isDpValue){
+	public TitleBar setTitleBarHeight(float height, boolean isDpValue){
 		ViewGroup.LayoutParams lp = rl_base_title_bar.getLayoutParams();
 		lp.height = isDpValue ? DisplayUtil.dp2px(getContext(), height) : (int) height;
 		rl_base_title_bar.setLayoutParams(lp);
+		return this;
 	}
 
-	public void setDividerHeight(float height, boolean isDpValue){
+	public TitleBar setDividerHeight(float height, boolean isDpValue){
 		ViewGroup.LayoutParams lp = view_divider.getLayoutParams();
 		lp.height = isDpValue ? DisplayUtil.dp2px(getContext(), height) : (int) height;
 		view_divider.setLayoutParams(lp);
+		return this;
 	}
 
 	/** 设置背景颜色
 	 * @param color
 	 */
-	public void setDividerColor(int color){
+	public TitleBar setDividerColor(int color){
 		view_divider.setBackgroundColor(ContextCompat.getColor(context, color));
+		return this;
 	}
 
 	/** 设置背景颜色
 	 * @param color
 	 */
-	public void setBackGroundColor(int color){
+	public TitleBar setBackGroundColor(int color){
 		rl_base_title_bar.setBackgroundColor(ContextCompat.getColor(context, color));
+		return this;
 	}
 
 	/** 设置标题
 	 * @param title
 	 */
-	public void setTitleText(String title){
+	public TitleBar setTitleText(String title){
 		if(!TextUtils.isEmpty(title) && title.length() >= 12){
 			tv_title_bar_title.setText(title.substring(0,12)+"...");
 		}else {
 			tv_title_bar_title.setText(title);
 		}
+		return this;
 	}
 
 	/** 设置标题颜色
 	 * @param color
 	 */
-	public void setTitleTextColor(int color){
+	public TitleBar setTitleTextColor(int color){
 		tv_title_bar_title.setTextColor(ContextCompat.getColor(context, color));
+		return this;
 	}
 
 	/** 设置右边文字
 	 * @param title
 	 */
-	public void setRightText(String title){
+	public TitleBar setRightText(String title){
 		if(!TextUtils.isEmpty(title) && title.length() >= 6){
 			tv_title_bar_right.setText(title.substring(0,6)+"...");
 		}else {
 			tv_title_bar_right.setText(title);
 		}
+		return this;
 	}
 
 	/** 设置右边文字颜色
 	 * @param color
 	 */
-	public void setRightTextColor(int color){
+	public TitleBar setRightTextColor(int color){
 		tv_title_bar_right.setTextColor(ContextCompat.getColor(context, color));
+		return this;
 	}
 	/** 设置左边文字
 	 * @param title
 	 */
-	public void setLeftText(String title){
+	public TitleBar setLeftText(String title){
 		if(!TextUtils.isEmpty(title) && title.length() >= 12){
 			tv_title_bar_left.setText(title.substring(0,12)+"...");
 		}else {
 			tv_title_bar_left.setText(title);
 		}
+		return this;
 	}
 
 	/** 设置左边文字颜色
 	 * @param color
 	 */
-	public void setLeftTextColor(int color){
+	public TitleBar setLeftTextColor(int color){
 		tv_title_bar_left.setTextColor(ContextCompat.getColor(context, color));
+		return this;
 	}
 
 	/** 设置点击事件
 	 * @param listener
 	 */
-	public void setLeftOnClickListener(OnClickListener listener){
+	public TitleBar setLeftOnClickListener(OnClickListener listener){
 		ll_title_bar_left.setOnClickListener(listener);
+		return this;
 	}
 
 	/** 设置点击事件
 	 * @param listener
 	 */
-	public void setRightOnClickListener(OnClickListener listener){
+	public TitleBar setRightOnClickListener(OnClickListener listener){
 		ll_title_bar_right.setOnClickListener(listener);
+		return this;
 	}
 
 	/** 设置点击事件
 	 * @param listener
 	 */
-	public void setTitleTextOnClickListener(OnClickListener listener){
+	public TitleBar setTitleTextOnClickListener(OnClickListener listener){
 		tv_title_bar_title.setOnClickListener(listener);
+		return this;
 	}
 
 	/** 设置点击事件
 	 * @param listener
 	 */
-	public void setTitleBarOnClickListener(OnClickListener listener){
+	public TitleBar setTitleBarOnClickListener(OnClickListener listener){
 		rl_base_title_bar.setOnClickListener(listener);
+		return this;
 	}
 
 	/** 设置点击事件 双击
 	 * @param listener
 	 */
-	public void setTitleBarOnTwoClickListener(final OnTwoClickListener listener){
+	public TitleBar setTitleBarOnTwoClickListener(final OnTwoClickListener listener){
 		rl_base_title_bar.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -261,58 +275,67 @@ public class TitleBar extends RelativeLayout {
 				return gestureDetector.onTouchEvent(event);
 			}
 		});
+		return this;
 	}
 
 	/** 设置左边控件显示
 	 */
-	public void setIsLeftViewShow(boolean isLeftViewShow){
+	public TitleBar setIsLeftViewShow(boolean isLeftViewShow){
 		ll_title_bar_left.setVisibility(isLeftViewShow ? View.VISIBLE : View.GONE);
 		tv_title_bar_left.setVisibility(isLeftViewShow ? View.VISIBLE : View.GONE);
 		img_title_bar_left.setVisibility(isLeftViewShow ? View.VISIBLE : View.GONE);
+		return this;
 	}
 
-	public void setIsLeftImageViewShow(boolean isLeftImageViewShow){
+	public TitleBar setIsLeftImageViewShow(boolean isLeftImageViewShow){
 		img_title_bar_left.setVisibility(isLeftImageViewShow ? View.VISIBLE : View.GONE);
+		return this;
 	}
 
-	public void setIsRightImageViewShow(boolean isRightImageViewShow){
+	public TitleBar setIsRightImageViewShow(boolean isRightImageViewShow){
 		img_title_bar_right.setVisibility(isRightImageViewShow ? View.VISIBLE : View.GONE);
+		return this;
 	}
 
-	public void setIsLeftTextViewShow(boolean isLeftTextViewShow){
+	public TitleBar setIsLeftTextViewShow(boolean isLeftTextViewShow){
 		tv_title_bar_left.setVisibility(isLeftTextViewShow ? View.VISIBLE : View.GONE);
+		return this;
 	}
 
-	public void setIsRightTextViewShow(boolean isRightTextViewShow){
+	public TitleBar setIsRightTextViewShow(boolean isRightTextViewShow){
 		tv_title_bar_right.setVisibility(isRightTextViewShow ? View.VISIBLE : View.GONE);
+		return this;
 	}
 
 	/** 设置右边控件显示
 	 */
-	public void setIsRightViewShow(boolean isRightViewShow){
+	public TitleBar setIsRightViewShow(boolean isRightViewShow){
 		ll_title_bar_right.setVisibility(isRightViewShow ? View.VISIBLE : View.GONE);
 		tv_title_bar_right.setVisibility(isRightViewShow ? View.VISIBLE : View.GONE);
 		img_title_bar_right.setVisibility(isRightViewShow ? View.VISIBLE : View.GONE);
+		return this;
 	}
 
 	/** 设置左边控件的背景图片
 	 */
-	public void setLeftViewBackgroundResource(int res){
+	public TitleBar setLeftViewBackgroundResource(int res){
 		if(res == -100){
 			img_title_bar_left.setVisibility(GONE);
-			return;
+		}else {
+			img_title_bar_left.setBackgroundResource(res);
 		}
-		img_title_bar_left.setBackgroundResource(res);
+		return this;
 	}
 
 	/** 设置右边控件的背景图片
 	 */
-	public void setRightViewBackgroundResource(int res){
+	public TitleBar setRightViewBackgroundResource(int res){
 		if(res == -100){
 			img_title_bar_right.setVisibility(GONE);
-			return;
+		}else {
+			img_title_bar_right.setBackgroundResource(res);
 		}
-		img_title_bar_right.setBackgroundResource(res);
+		return this;
 	}
 
 	public LinearLayout getLeftView(){

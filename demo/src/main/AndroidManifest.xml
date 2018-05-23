@@ -19,6 +19,7 @@
 
         <activity android:name=".activity.TitleBarXMLActivity"/>
         <activity android:name=".activity.TitleBarExtendsBaseActivity"/>
+        <activity android:name=".activity.TitleBarJavaActivity"/>
     </application>
 
 </manifest>

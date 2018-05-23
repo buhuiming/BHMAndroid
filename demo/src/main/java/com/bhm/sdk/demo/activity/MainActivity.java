@@ -43,6 +43,7 @@ public class MainActivity extends AppCompatActivity {
         List<String> list = new ArrayList<>();
         list.add("标题栏TitleBar(XML集成)");
         list.add("标题栏TitleBar(BaseActivity集成)");
+        list.add("标题栏TitleBar(代码生成)");
         return list;
     }
 
@@ -63,6 +64,9 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case 1:
                 intent.setClass(this, TitleBarExtendsBaseActivity.class);
+                break;
+            case 2:
+                intent.setClass(this, TitleBarJavaActivity.class);
                 break;
         }
         startActivity(intent);
