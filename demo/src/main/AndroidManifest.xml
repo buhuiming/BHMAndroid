@@ -20,6 +20,7 @@
         <activity android:name=".activity.TitleBarXMLActivity"/>
         <activity android:name=".activity.TitleBarExtendsBaseActivity"/>
         <activity android:name=".activity.TitleBarJavaActivity"/>
+        <activity android:name=".activity.ViewPagerActivity"/>
     </application>
 
 </manifest>

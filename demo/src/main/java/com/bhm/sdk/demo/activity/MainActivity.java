@@ -44,6 +44,7 @@ public class MainActivity extends AppCompatActivity {
         list.add("标题栏TitleBar(XML集成)");
         list.add("标题栏TitleBar(BaseActivity集成)");
         list.add("标题栏TitleBar(代码生成)");
+        list.add("viewPager(取消预加载)");
         return list;
     }
 
@@ -67,6 +68,9 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case 2:
                 intent.setClass(this, TitleBarJavaActivity.class);
+                break;
+            case 3:
+                intent.setClass(this, ViewPagerActivity.class);
                 break;
         }
         startActivity(intent);
