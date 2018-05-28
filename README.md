@@ -9,7 +9,7 @@ RxLibrary工程：一些常用的工具类，以及常用的控件，主要用�
 -------  
 >![image](https://github.com/buhuiming/BHMAndroid/blob/master/screenShots/1.png) ![image](https://github.com/buhuiming/BHMAndroid/blob/master/screenShots/2.png)    
 
-# 1.XML集成方式：
+### 1.XML集成方式：
 >在layout文件中添加
 
     <com.bhm.sdk.bhmlibrary.views.TitleBar
@@ -30,7 +30,7 @@ RxLibrary工程：一些常用的工具类，以及常用的控件，主要用�
         app:dividerColor="@color/black"
         app:backGroundColor="@color/colorPrimary"/>
         
- # 2.继承TitleBarActivity集成方式：
+ ### 2.继承TitleBarActivity集成方式：
 >继承TitleBarActivity类，
 >重写setContentView和initTitleBar方法
 
@@ -57,7 +57,7 @@ RxLibrary工程：一些常用的工具类，以及常用的控件，主要用�
         return LayoutInflater.from(this).inflate(R.layout.activity_extends_title_bar, rootView, false);
     }
     
-# 3.代码生成titleBar的方式：
+### 3.代码生成titleBar的方式：
 
         private TitleBar titleBar;
         private View contentView;
@@ -85,7 +85,7 @@ RxLibrary工程：一些常用的工具类，以及常用的控件，主要用�
                 .setBackGroundColor(R.color.colorPrimary);
         tv_text.setText("ssssssssssssssss");
     
-# 4.xml方法介绍：
+### 4.xml方法介绍：
 >app:titleBarHeight设置标题栏的高度，默认48dp</br>
 >app:dividerHeight设置分割线的高度</br>
 >app:backGroundColor设置标题栏的背景颜色，默认白色</br>
@@ -101,7 +101,7 @@ RxLibrary工程：一些常用的工具类，以及常用的控件，主要用�
 >app:leftViewBackgroundResource设置左边图标的资源</br>
 >app:rightViewBackgroundResource设置右边图标的资源</br>
 
-# 5.java方法介绍：
+### 5.java方法介绍：
 
 >setTitleBarHeight(float height, boolean isDpValue)设置标题栏的高度</br>
 >setDividerHeight(float height, boolean isDpValue)设置分割线的高度</br>
@@ -126,3 +126,41 @@ RxLibrary工程：一些常用的工具类，以及常用的控件，主要用�
 
 
 此外还有一些获取控件的方法。详细用法请参考demo。
+
+
+二、LazyLoadFragment懒加载的使用
+---------
+### 1.用法介绍
+    用法特别简单，继承LazyLoadFragment类，重写4个方法，以下介绍一下这这个方法：
+    
+### setLayoutId()，返回布局id：</br>
+
+        @Override
+        protected int setLayoutId() {
+            return R.layout.activity_java_title_bar;
+        }
+
+### initView(),初始化工作：</br>
+
+        @Override
+        protected void initView() {
+            super.initView();
+            ButterKnife.bind(this, rootView);
+            tv_text.setText("fragment position is " + getArguments().get("data"));
+            Log.i("DemoFragment", getArguments().get("data") + " 初始化完毕");
+        }
+        
+### lazyLoad(),加载数据，一般是耗时的工作：</br>
+       
+       例如读取数据库，请求网络数据。
+
+### setLoadDataOnce()</br>
+       
+       重写此方法，返回true,则lazyLoad()只会回调一次数据，切换fragment不再回调lazyLoad()；
+       返回false，则每次fragment可见都会回调lazyLoad()，默认是true。
+       注：如果adapter的destroyItem方法去掉super，则只会初始化（initView）一次，切换fragment不再初始化；
+       否则，fragment每次可见都初始化
+
+
+
+ 
