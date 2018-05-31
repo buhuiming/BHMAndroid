@@ -3,13 +3,13 @@ package com.bhm.sdk.demo.activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
 import com.bhm.sdk.bhmlibrary.views.TitleBar;
 import com.bhm.sdk.demo.R;
 import com.bhm.sdk.demo.adapter.DemoViewPagerAdapter;
 import com.bhm.sdk.demo.fragment.DemoFragment;
+import com.bhm.sdk.rxlibrary.rxjava.RxBaseActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,7 +21,7 @@ import butterknife.ButterKnife;
  * Created by bhm on 2018/5/25.
  */
 
-public class ViewPagerActivity extends AppCompatActivity {
+public class ViewPagerActivity extends RxBaseActivity {
 
     @BindView(R.id.titleBar)
     protected TitleBar titleBar;

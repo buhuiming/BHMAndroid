@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <paths>
+        <!--代表的根目录为： Context.getFilesDir() -->
+        <files-path path="." name="files"/>
+        <!--代表的根目录为: Environment.getExternalStorageDirectory()-->
+        <external-path path="." name="external_storage_root"/>
+        <external-path path="." name="BHMLibrary"/>//
+    </paths>
+</resources>
