@@ -1,12 +1,11 @@
 RxLibrary工程：一些常用的工具类，以及常用的控件，主要用来提高开发效率。
 =====
 
-一、TitleBar的使用
--------  
->![image](https://github.com/buhuiming/BHMAndroid/blob/master/screenShots/5.png) 
-
 一、LazyLoadFragment懒加载的使用
----------
+---------  
+>![image](https://github.com/buhuiming/BHMAndroid/blob/master/screenShots/5.jpg) 
+
+
 ### 1.用法介绍
     用法特别简单，继承LazyLoadFragment类，重写4个方法，以下介绍一下这这个方法：
     
