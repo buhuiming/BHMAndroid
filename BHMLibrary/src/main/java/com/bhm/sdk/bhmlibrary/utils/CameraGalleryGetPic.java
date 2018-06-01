@@ -4,6 +4,7 @@ import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Build;
@@ -96,9 +97,28 @@ public class CameraGalleryGetPic {
 
     public void call(int requestCode, int resultCode, Intent dataIntent, PictureCall call){
         if (requestCode == CAMERA_CODE && resultCode == Activity.RESULT_OK) {//拍照
-            cutImageCamera(getUriForFile(builder.activity, new File(builder.picPath)));
+            if(builder.isCrop){
+                cutImageCamera(getUriForFile(builder.activity, new File(builder.picPath)));
+            }else if(null != call){
+                call.result(builder.picPath);
+            }
         } else if (requestCode == GALLERY_CODE && resultCode == Activity.RESULT_OK) {//相册
-            cutImageGallery(dataIntent.getData());
+            if(builder.isCrop){
+                cutImageGallery(dataIntent.getData());
+            }else if(null != call){
+                //获取照片路径
+                try {
+                    String[] filePathColumn = {MediaStore.Audio.Media.DATA};
+                    Cursor cursor = builder.activity.getContentResolver().query(
+                            dataIntent.getData(), filePathColumn, null, null, null);
+                    cursor.moveToFirst();
+                    String photoPath = cursor.getString(cursor.getColumnIndex(filePathColumn[0]));
+                    cursor.close();
+                    call.result(photoPath);
+                }catch (Exception e){
+
+                }
+            }
         } else if (requestCode == CUT_GALLERY_CODE && resultCode == Activity.RESULT_OK) {//相册裁剪
             if(null != call){
                 call.result(builder.picPath);
@@ -116,6 +136,7 @@ public class CameraGalleryGetPic {
         private String picPath;
         private int outputX;
         private int outputY;
+        private boolean isCrop;
 
         public Builder(@NonNull Activity activity){
             this.activity = activity;
@@ -134,6 +155,11 @@ public class CameraGalleryGetPic {
 
         public Builder setFormat(String format){
             this.format = format;
+            return this;
+        }
+
+        public Builder isCrop(boolean isCrop){
+            this.isCrop = isCrop;
             return this;
         }
 
