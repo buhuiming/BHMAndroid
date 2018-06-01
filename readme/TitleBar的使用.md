@@ -1,9 +1,5 @@
-# BHMAndroid
 RxLibrary工程：一些常用的工具类，以及常用的控件，主要用来提高开发效率。
 =====
-
-集成：compile 'com.bhm.sdk.bhmlibrary:BHMLibrary:1.1.3'
--------
 
 一、TitleBar的使用
 -------  
@@ -126,40 +122,6 @@ RxLibrary工程：一些常用的工具类，以及常用的控件，主要用�
 
 
 此外还有一些获取控件的方法。详细用法请参考demo。
-
-
-二、LazyLoadFragment懒加载的使用
----------
-### 1.用法介绍
-    用法特别简单，继承LazyLoadFragment类，重写4个方法，以下介绍一下这这个方法：
-    
-### setLayoutId()，返回布局id：</br>
-
-        @Override
-        protected int setLayoutId() {
-            return R.layout.activity_java_title_bar;
-        }
-
-### initView(),初始化工作：</br>
-
-        @Override
-        protected void initView() {
-            super.initView();
-            ButterKnife.bind(this, rootView);
-            tv_text.setText("fragment position is " + getArguments().get("data"));
-            Log.i("DemoFragment", getArguments().get("data") + " 初始化完毕");
-        }
-        
-### lazyLoad(),加载数据，一般是耗时的工作：</br>
-       
-       例如读取数据库，请求网络数据。
-
-### setLoadDataOnce()</br>
-       
-       重写此方法，返回true,则lazyLoad()只会回调一次数据，切换fragment不再回调lazyLoad()；
-       返回false，则每次fragment可见都会回调lazyLoad()，默认是true。
-       注：如果adapter的destroyItem方法去掉super，则只会初始化（initView）一次，切换fragment不再初始化；
-       否则，fragment每次可见都初始化
 
 
 
