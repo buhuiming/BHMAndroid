@@ -1,4 +1,4 @@
 <resources>
     <string name="app_name">BHMLibrary</string>
-    <string name="authorities" translatable="false">com.bhm.sdk.bhmlibrary.fileprovider</string>
+    <!--<string name="authorities" translatable="false">com.bhm.sdk.bhmlibrary.fileprovider</string>-->
 </resources>

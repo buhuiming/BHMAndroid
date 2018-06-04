@@ -4,6 +4,8 @@ import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.ApplicationInfo;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.net.Uri;
@@ -15,7 +17,6 @@ import android.support.v4.content.FileProvider;
 import android.text.TextUtils;
 import android.widget.Toast;
 
-import com.bhm.sdk.bhmlibrary.R;
 import com.bhm.sdk.bhmlibrary.interfaces.PictureCall;
 import com.tbruyelle.rxpermissions2.RxPermissions;
 
@@ -42,10 +43,16 @@ public class CameraGalleryGetPic {
     public static final String FORMAT_PNG = Bitmap.CompressFormat.PNG.toString();
     public static final String FORMAT_WEBP = Bitmap.CompressFormat.WEBP.toString();
     private Builder builder;
+    private String temporaryPath;
 
     public CameraGalleryGetPic(@NonNull Builder builder){
         this.builder = builder;
-        initPicPath();
+        String dir = getSDCardPath() + localFileName + "/";
+        if (!TextUtils.isEmpty(builder.picPath)) {
+            dir = builder.picPath;
+        }
+        File file = new File(dir);
+        setCacheFile(file);
     }
 
     public static Builder newBuilder(@NonNull Activity activity){
@@ -64,9 +71,10 @@ public class CameraGalleryGetPic {
                             Toast.makeText(builder.activity,
                                     "无法获取权限，请在设置中授权", Toast.LENGTH_SHORT).show();
                         }else{
+                            initPicPath();
                             Intent camera = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
                             camera.putExtra(MediaStore.EXTRA_OUTPUT,
-                                    getUriForFile(builder.activity, new File(builder.picPath)));
+                                    getUriForFile(builder.activity, new File(temporaryPath)));
                             builder.activity.startActivityForResult(camera, CAMERA_CODE);
 
                         }
@@ -87,6 +95,7 @@ public class CameraGalleryGetPic {
                             Toast.makeText(builder.activity,
                                     "无法获取权限，请在设置中授权", Toast.LENGTH_SHORT).show();
                         } else {
+                            initPicPath();
                             Intent album = new Intent(Intent.ACTION_PICK,
                                     android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
                             builder.activity.startActivityForResult(album, GALLERY_CODE);
@@ -98,9 +107,9 @@ public class CameraGalleryGetPic {
     public void call(int requestCode, int resultCode, Intent dataIntent, PictureCall call){
         if (requestCode == CAMERA_CODE && resultCode == Activity.RESULT_OK) {//拍照
             if(builder.isCrop){
-                cutImageCamera(getUriForFile(builder.activity, new File(builder.picPath)));
+                cutImageCamera(getUriForFile(builder.activity, new File(temporaryPath)));
             }else if(null != call){
-                call.result(builder.picPath);
+                call.result(temporaryPath);
             }
         } else if (requestCode == GALLERY_CODE && resultCode == Activity.RESULT_OK) {//相册
             if(builder.isCrop){
@@ -121,11 +130,11 @@ public class CameraGalleryGetPic {
             }
         } else if (requestCode == CUT_GALLERY_CODE && resultCode == Activity.RESULT_OK) {//相册裁剪
             if(null != call){
-                call.result(builder.picPath);
+                call.result(temporaryPath);
             }
         } else if (requestCode == CUT_CAMERA_CODE && resultCode == Activity.RESULT_OK) {//相机裁剪
             if(null != call){
-                call.result(builder.picPath);
+                call.result(temporaryPath);
             }
         }
     }
@@ -179,7 +188,7 @@ public class CameraGalleryGetPic {
         }
         Uri uri;
         if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            String authority = context.getResources().getString(R.string.authorities);
+            String authority = getAuthority(context);
             uri = FileProvider.getUriForFile(context.getApplicationContext(), authority, file);
         } else {
             uri = Uri.fromFile(file);
@@ -187,26 +196,53 @@ public class CameraGalleryGetPic {
         return uri;
     }
 
+    private String getAuthority(Context context){
+        try {
+            ApplicationInfo appInfo = context.getPackageManager().
+                    getApplicationInfo(context.getPackageName(), PackageManager.GET_META_DATA);
+            return appInfo.metaData.getString("authorities");
+        }catch (Exception e){
+
+        }
+        return "";
+    }
+
     /**
      * 获取最新的头像文件名，同时删除旧头像文件
      * 因为每次拍摄的头像都是独立的，所以需要传入对应的路径才能删除文件
      */
     private void initPicPath() {
-        String path;
-        if(TextUtils.isEmpty(builder.picPath)){
-            String dir = getSDCardPath() + localFileName + "/";
-            String filename = System.currentTimeMillis() + "." +
-                    ((TextUtils.isEmpty(builder.format) ? FORMAT_PNG: builder.format)).toLowerCase();
-            path = dir + filename;
-            builder.picPath = path;
-        }else{
-            path = builder.picPath;
+        String dir = getSDCardPath() + localFileName + "/";
+        String filename = System.currentTimeMillis() + "." +
+                ((TextUtils.isEmpty(builder.format) ? FORMAT_PNG: builder.format)).toLowerCase();
+        if (!TextUtils.isEmpty(builder.picPath)) {
+            dir = builder.picPath;
         }
-
-        File dirs = new File(path);
+        File dirs = new File(dir);
         if (!dirs.exists()) {
             dirs.mkdirs();
         }
+        temporaryPath = dir + filename;
+    }
+
+    private void setCacheFile(File file){
+        if(file.isFile()) {
+            file.delete();
+            return;
+        }
+        if(file.isDirectory()){
+            File[] childFiles = file.listFiles();
+            if (childFiles == null || childFiles.length == 0) {
+                file.delete();
+                return;
+            }else if(childFiles.length >= 1){//超过50张 把所有图片都删除
+                for (int i = 0; i < childFiles.length; i++) {
+                    setCacheFile(childFiles[i]);
+                }
+                file.delete();
+            }
+        }
+        file.mkdirs();
     }
 
     /**
@@ -221,7 +257,7 @@ public class CameraGalleryGetPic {
      * @param uri
      */
     private void cutImageGallery(Uri uri) {
-        File f = new File(builder.picPath);
+        File f = new File(temporaryPath);
         if (f.exists()) {
             f.delete();
         }

@@ -52,11 +52,11 @@ public class GetPictureActivity extends AppCompatActivity {
         });
 
         String path = Environment.getExternalStorageDirectory().getAbsolutePath()
-                + File.separator + "GetPictureActivity" + "/" + "test.png";
+                + File.separator + "CPictureActivity" + "/";
 
         getPic = CameraGalleryGetPic.newBuilder(this)
                 .setPicPath(path)
-                .isCrop(true)//是否剪切图片，默认为false
+                .isCrop(false)//是否剪切图片，默认为false
                 .setScale(320, 320)//isCrop(true)有效
                 .setFormat(CameraGalleryGetPic.FORMAT_PNG)
                 .build();

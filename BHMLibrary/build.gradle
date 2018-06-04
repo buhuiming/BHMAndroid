@@ -14,9 +14,6 @@ android {
         targetSdkVersion 26
         versionCode 1
         versionName "1.1"
-
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-
     }
     buildTypes {
         release {
@@ -35,6 +32,6 @@ dependencies {
 ext {
     PUBLISH_GROUP_ID = 'com.bhm.sdk.bhmlibrary'
     PUBLISH_ARTIFACT_ID = 'BHMLibrary'
-    PUBLISH_VERSION = '1.1.5'
+    PUBLISH_VERSION = '1.1.6'
 }
 apply from: 'https://raw.githubusercontent.com/blundell/release-android-library/master/android-release-aar.gradle'
