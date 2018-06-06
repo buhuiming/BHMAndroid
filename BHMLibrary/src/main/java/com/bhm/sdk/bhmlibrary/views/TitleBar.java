@@ -6,6 +6,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
 import android.text.TextUtils;
 import android.util.AttributeSet;
+import android.util.TypedValue;
 import android.view.GestureDetector;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -83,6 +84,15 @@ public class TitleBar extends RelativeLayout {
 				-100);
 		float divider = typedArray.getDimension(R.styleable.title_bar_dividerHeight, 0f);
 
+		float leftTextSize = typedArray.getDimensionPixelSize(R.styleable.title_bar_leftTextSize, 16);
+		float rightTextSize = typedArray.getDimensionPixelSize(R.styleable.title_bar_rightTextSize, 18);
+		float titleTextSize = typedArray.getDimensionPixelSize(R.styleable.title_bar_titleTextSize, 16);
+
+		float leftViewMarginLeft = typedArray.getDimension(R.styleable.title_bar_leftViewMarginLeft, 15f);
+		float rightViewMarginRight = typedArray.getDimension(R.styleable.title_bar_rightViewMarginRight, 15f);
+		float leftTextViewPaddingLeft = typedArray.getDimension(R.styleable.title_bar_leftTextViewPaddingLeft, 4f);
+		float rightTextViewPaddingRight = typedArray.getDimension(R.styleable.title_bar_rightTextViewPaddingRight, 4f);
+
 		setTitleBarHeight(titleBarHeight, false);
 		setDividerHeight(divider, false);
 		rl_base_title_bar.setBackgroundColor(backGroundColor);//设置背景颜色
@@ -97,6 +107,14 @@ public class TitleBar extends RelativeLayout {
 		setIsRightViewShow(isRightViewShow);//是否显示右边图片
 		setLeftViewBackgroundResource(leftViewBackgroundResource);//左边的Image
 		setRightViewBackgroundResource(rightViewBackgroundResource);//右边的Image
+		tv_title_bar_left.setTextSize(TypedValue.COMPLEX_UNIT_PX, leftTextSize);
+		tv_title_bar_right.setTextSize(TypedValue.COMPLEX_UNIT_PX, rightTextSize);
+		tv_title_bar_title.setTextSize(TypedValue.COMPLEX_UNIT_PX, titleTextSize);
+
+		ll_title_bar_left.setPadding((int) leftViewMarginLeft, 0, 0, 0);
+		ll_title_bar_right.setPadding(0, 0, (int) rightViewMarginRight, 0);
+		tv_title_bar_left.setPadding((int) leftTextViewPaddingLeft, 0, 0, 0);
+		tv_title_bar_right.setPadding(0, (int) rightTextViewPaddingRight, 0, 0);
 
 		typedArray.recycle();
 	}
@@ -115,6 +133,21 @@ public class TitleBar extends RelativeLayout {
 		ll_title_bar_left = (LinearLayout) findViewById(R.id.ll_title_bar_left);
 		ll_title_bar_right = (LinearLayout) findViewById(R.id.ll_title_bar_right);
 		view_divider = (View) findViewById(R.id.view_divider);
+	}
+
+	public TitleBar setLeftTextSize(float size){
+		tv_title_bar_left.setTextSize(size);
+		return this;
+	}
+
+	public TitleBar setRightTextSize(float size){
+		tv_title_bar_right.setTextSize(size);
+		return this;
+	}
+
+	public TitleBar setTitleTextSize(float size){
+		tv_title_bar_title.setTextSize(size);
+		return this;
 	}
 
 	public TitleBar setTitleBarHeight(float height, boolean isDpValue){

@@ -18,9 +18,13 @@
         app:rightText="完成"
         app:leftText="返回"
         app:leftViewBackgroundResource="@drawable/arrow_a"
+        app:rightViewBackgroundResource="@drawable/arrow_a"
         app:isLeftViewShow="true"
         app:isRightViewShow="true"
         app:dividerHeight="1dp"
+        app:leftTextSize="14sp"
+        app:titleTextSize="17sp"
+        app:rightTextSize="14sp"
         app:dividerColor="@color/black"
         app:backGroundColor="@color/colorPrimary"/>
 

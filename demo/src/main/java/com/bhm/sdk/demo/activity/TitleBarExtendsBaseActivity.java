@@ -30,6 +30,9 @@ public class TitleBarExtendsBaseActivity extends TitleBarActivity {
         titleBar.setDividerHeight(1f, false);
         titleBar.setDividerColor(R.color.black);
         titleBar.setBackGroundColor(R.color.white);
+        titleBar.setTitleTextSize(18);
+        titleBar.setLeftTextSize(16);
+        titleBar.setRightTextSize(16);
 
         titleBar.setLeftOnClickListener(new View.OnClickListener() {
             @Override

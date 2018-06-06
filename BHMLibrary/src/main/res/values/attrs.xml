@@ -16,6 +16,13 @@
         <attr name="isRightViewShow" format="boolean" />
         <attr name="leftViewBackgroundResource" format="reference" />
         <attr name="rightViewBackgroundResource" format="reference" />
+        <attr name="leftTextSize" format="dimension" />
+        <attr name="rightTextSize" format="dimension" />
+        <attr name="titleTextSize" format="dimension" />
+        <attr name="leftViewMarginLeft" format="dimension" />
+        <attr name="rightViewMarginRight" format="dimension" />
+        <attr name="leftTextViewPaddingLeft" format="dimension" />
+        <attr name="rightTextViewPaddingRight" format="dimension" />
     </declare-styleable>
 
 </resources>
