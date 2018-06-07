@@ -8,13 +8,13 @@ RxLibrary工程：一些常用的工具类，以及常用的控件，主要用�
 
 集成：
 -------
-        compile 'com.bhm.sdk.bhmlibrary:BHMLibrary:1.1.6'
+        compile 'com.bhm.sdk.bhmlibrary:BHMLibrary:1.1.7'
 
         
         <dependency>
           <groupId>com.bhm.sdk.bhmlibrary</groupId>
           <artifactId>BHMLibrary</artifactId>
-          <version>1.1.6</version>
+          <version>1.1.7</version>
           <type>pom</type>
         </dependency>
         
@@ -28,3 +28,11 @@ RxLibrary工程：一些常用的工具类，以及常用的控件，主要用�
 ### [三、敏感权限申请RxPermission](https://github.com/buhuiming/BHMAndroid/blob/master/readme/%E6%95%8F%E6%84%9F%E6%9D%83%E9%99%90%E7%94%B3%E8%AF%B7.md)
 
 ### [四、读取图片（拍照/相册）](https://github.com/buhuiming/BHMAndroid/blob/master/readme/%E8%AF%BB%E5%8F%96%E5%9B%BE%E7%89%87%EF%BC%88%E6%8B%8D%E7%85%A7%26%E7%9B%B8%E5%86%8C%EF%BC%89.md)
+
+<br>
+<br>
+
+### 更新日志：
+
+   * 1.1.6——1.1.7</br>
+        >TitleBar添加新的方法。
