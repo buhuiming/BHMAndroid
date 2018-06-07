@@ -25,6 +25,10 @@
         app:leftTextSize="14sp"
         app:titleTextSize="17sp"
         app:rightTextSize="14sp"
+        app:leftViewMarginLeft ="20dp"
+        app:rightViewMarginRight ="20dp"
+        app:leftTextViewPaddingLeft ="20dp"
+        app:rightTextViewPaddingRight ="20dp"
         app:dividerColor="@color/black"
         app:backGroundColor="@color/colorPrimary"/>
 

@@ -111,10 +111,10 @@ public class TitleBar extends RelativeLayout {
 		tv_title_bar_right.setTextSize(TypedValue.COMPLEX_UNIT_PX, rightTextSize);
 		tv_title_bar_title.setTextSize(TypedValue.COMPLEX_UNIT_PX, titleTextSize);
 
-		ll_title_bar_left.setPadding((int) leftViewMarginLeft, 0, 0, 0);
-		ll_title_bar_right.setPadding(0, 0, (int) rightViewMarginRight, 0);
-		tv_title_bar_left.setPadding((int) leftTextViewPaddingLeft, 0, 0, 0);
-		tv_title_bar_right.setPadding(0, (int) rightTextViewPaddingRight, 0, 0);
+		setLeftViewMarginLeft(leftViewMarginLeft, false);
+		setRightViewMarginRight(rightViewMarginRight, false);
+		setLeftTextViewPaddingLeft(leftTextViewPaddingLeft, false);
+		setRightTextViewPaddingRight(rightTextViewPaddingRight, false);
 
 		typedArray.recycle();
 	}
@@ -133,6 +133,42 @@ public class TitleBar extends RelativeLayout {
 		ll_title_bar_left = (LinearLayout) findViewById(R.id.ll_title_bar_left);
 		ll_title_bar_right = (LinearLayout) findViewById(R.id.ll_title_bar_right);
 		view_divider = (View) findViewById(R.id.view_divider);
+	}
+
+	public TitleBar setLeftViewMarginLeft(float leftViewMarginLeft, boolean isDpValue){
+		if(isDpValue) {
+			ll_title_bar_left.setPadding(DisplayUtil.dp2px(getContext(),leftViewMarginLeft), 0, 0, 0);
+		}else{
+			ll_title_bar_left.setPadding((int) leftViewMarginLeft, 0, 0, 0);
+		}
+		return  this;
+	}
+
+	public TitleBar setRightViewMarginRight(float rightViewMarginRight, boolean isDpValue){
+		if(isDpValue) {
+			ll_title_bar_right.setPadding(0, 0, DisplayUtil.dp2px(getContext(), rightViewMarginRight), 0);
+		}else{
+			ll_title_bar_right.setPadding(0, 0, (int) rightViewMarginRight, 0);
+		}
+		return  this;
+	}
+
+	public TitleBar setLeftTextViewPaddingLeft(float leftTextViewPaddingLeft, boolean isDpValue){
+		if(isDpValue) {
+			tv_title_bar_left.setPadding(DisplayUtil.dp2px(getContext(),leftTextViewPaddingLeft), 0, 0, 0);
+		}else{
+			tv_title_bar_left.setPadding((int) leftTextViewPaddingLeft, 0, 0, 0);
+		}
+		return  this;
+	}
+
+	public TitleBar setRightTextViewPaddingRight(float rightTextViewPaddingRight, boolean isDpValue){
+		if(isDpValue) {
+			tv_title_bar_right.setPadding(0,  0, DisplayUtil.dp2px(context, rightTextViewPaddingRight),0);
+		}else{
+			tv_title_bar_right.setPadding(0, 0, (int) rightTextViewPaddingRight, 0);
+		}
+		return  this;
 	}
 
 	public TitleBar setLeftTextSize(float size){

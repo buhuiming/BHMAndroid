@@ -33,6 +33,10 @@ public class TitleBarExtendsBaseActivity extends TitleBarActivity {
         titleBar.setTitleTextSize(18);
         titleBar.setLeftTextSize(16);
         titleBar.setRightTextSize(16);
+        titleBar.setLeftTextViewPaddingLeft(18, true);
+        titleBar.setRightTextViewPaddingRight(18, true);
+        titleBar.setLeftViewMarginLeft(20, true);
+        titleBar.setRightViewMarginRight(20, true);
 
         titleBar.setLeftOnClickListener(new View.OnClickListener() {
             @Override
