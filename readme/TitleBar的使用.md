@@ -126,5 +126,25 @@ RxLibrary工程：一些常用的工具类，以及常用的控件，主要用�
 此外还有一些获取控件的方法。详细用法请参考demo。
 
 
+### 更新日志
 
- 
+* 1.1.6——1.1.7 添加了7个方法
+
+        app:leftTextSize="14sp"//左边字体大小
+        app:titleTextSize="17sp"//标题字体大小
+        app:rightTextSize="14sp"//右边边字体大小
+        app:leftViewMarginLeft ="20dp"//左边控件到左边的距离
+        app:rightViewMarginRight ="20dp"//右边控件到右边的距离
+        app:leftTextViewPaddingLeft ="20dp"//左边文字跟左边图标的距离
+        app:rightTextViewPaddingRight ="20dp"//右边文字跟右边图标的距离
+
+    对应的方法
+
+        titleBar.setTitleTextSize(18);
+        titleBar.setLeftTextSize(16);
+        titleBar.setRightTextSize(16);
+        titleBar.setLeftTextViewPaddingLeft(18, true);
+        titleBar.setRightTextViewPaddingRight(18, true);
+        titleBar.setLeftViewMarginLeft(20, true);
+        titleBar.setRightViewMarginRight(20, true);
+      
