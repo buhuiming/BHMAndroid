@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+    html body{
+      margin: 0;
+      padding: 0;
+      font-size: 14px;
+    }
+    .box {
+      height: 450px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      padding: 0 15px;
+    }
+    .header{
+      text-align: center;
+      font-size: 18px;
+      color: #646464;
+    }
+    ._link{
+      color: #4285f4;
+      margin: 15px 0;
+    }
+    .text-overflow{
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 2;
+      word-break: break-all;
+    }
+    ._hr{
+      width: 100%;
+      height: 1px;
+      border-bottom: 1px solid #cccccc;
+    }
+    ._ul{
+      color: #6464648a;
+    }
+    ._ul li{
+      line-height: 20px;
+    }
+
+  </style>
+</head>
+<body>
+<div class="box">
+    <div class="centent">
+
+    </div>
+    <div class="header">无法加载页面</div>
+    <div class="text-overflow _link" id="link"></div>
+    <div class="_hr"></div>
+    <ul class="_ul">
+        <li>没有网络信号或数据连接</li>
+        <li>此网址可能暂时出现故障</li>
+        <li>输入的网址不正确</li>
+    </ul>
+</div>
+
+<script>
+    function getUrlParms(name){
+      var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+      var r = window.location.search.substr(1).match(reg);
+      if(r!=null)
+      return unescape(r[2]);
+      return null;
+    }
+    document.getElementById('link').innerHTML = getUrlParms('path')
+
+  </script>
+</body>
+</html>

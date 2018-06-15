@@ -16,6 +16,8 @@ import android.webkit.ConsoleMessage;
 import android.webkit.JsResult;
 import android.webkit.SslErrorHandler;
 import android.webkit.WebChromeClient;
+import android.webkit.WebResourceError;
+import android.webkit.WebResourceRequest;
 import android.webkit.WebResourceResponse;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
@@ -39,13 +41,19 @@ public class BaseWebView extends WebView {
 
     private ProgressBar progressbar;
     private boolean isProgressBar = false;
+    private @DrawableRes int drawableRes = 0;
+    private String errorPagePath = "";
 
     public BaseWebView(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
 
-    public @DrawableRes int setProgressBarDrawable(){
-        return 0;
+    public void setProgressBarDrawable(@DrawableRes int drawableRes){
+        this.drawableRes = drawableRes;
+    }
+
+    public void setErrorPagePath(String errorPagePath){
+        this.errorPagePath = errorPagePath;
     }
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
@@ -56,11 +64,11 @@ public class BaseWebView extends WebView {
                     android.R.attr.progressBarStyleHorizontal);
             progressbar.setLayoutParams(new LayoutParams(LayoutParams.FILL_PARENT,
                     8, 0, 0));
-            if(setProgressBarDrawable() == 0) {
+            if(drawableRes == 0) {
                 Drawable drawable = context.getResources().getDrawable(R.drawable.bg_progressbar);
                 progressbar.setProgressDrawable(drawable);
             }else {
-                Drawable drawable = context.getResources().getDrawable(setProgressBarDrawable());
+                Drawable drawable = context.getResources().getDrawable(drawableRes);
                 progressbar.setProgressDrawable(drawable);
             }
             addView(progressbar);
@@ -144,9 +152,28 @@ public class BaseWebView extends WebView {
             };
             @Override
             public void onReceivedError(WebView view, int errorCode, String description, String failingUrl) {
+//                super.onReceivedError(view, errorCode, description, failingUrl);
+                if(TextUtils.isEmpty(errorPagePath)) {
+                    loadUrl("file:///android_asset/error.html?path=" + failingUrl);
+                }else{
+                    loadUrl(errorPagePath);
+                }
+                //6.0以下执行
                 callBack.onReceivedError(view, errorCode, description, failingUrl);
-                super.onReceivedError(view, errorCode, description, failingUrl);
             }
+
+            @Override
+            public void onReceivedError(WebView view, WebResourceRequest request, WebResourceError error) {
+//                super.onReceivedError(view, request, error);
+                if(TextUtils.isEmpty(errorPagePath)) {
+                    loadUrl("file:///android_asset/error.html?path=" + request.getUrl().toString());
+                }else{
+                    loadUrl(errorPagePath);
+                }
+                //6.0以上执行
+                callBack.onReceivedError(view, error.getErrorCode(), error.getDescription().toString(), request.getUrl().getPath());
+            }
+
             @TargetApi(Build.VERSION_CODES.HONEYCOMB)
             @Override
             public WebResourceResponse shouldInterceptRequest(WebView view, String url) {

@@ -46,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
         list.add("标题栏TitleBar(代码生成)");
         list.add("viewPager(取消预加载)");
         list.add("图库&拍照");
+        list.add("webView");
         return list;
     }
 
@@ -75,6 +76,9 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case 4:
                 intent.setClass(this, GetPictureActivity.class);
+                break;
+            case 5:
+                intent.setClass(this, TitleBarXMLActivity.class);
                 break;
         }
         startActivity(intent);

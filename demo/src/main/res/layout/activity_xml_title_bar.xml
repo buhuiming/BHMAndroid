@@ -15,21 +15,25 @@
         app:rightTextColor="@color/white"
         app:leftTextColor="@color/white"
         app:titleText="标题"
-        app:rightText="完成"
+        app:rightText=""
         app:leftText="返回"
         app:leftViewBackgroundResource="@drawable/arrow_a"
-        app:rightViewBackgroundResource="@drawable/arrow_a"
         app:isLeftViewShow="true"
         app:isRightViewShow="true"
         app:dividerHeight="1dp"
         app:leftTextSize="14sp"
         app:titleTextSize="17sp"
         app:rightTextSize="14sp"
-        app:leftViewMarginLeft ="20dp"
-        app:rightViewMarginRight ="20dp"
-        app:leftTextViewPaddingLeft ="20dp"
-        app:rightTextViewPaddingRight ="20dp"
+        app:leftViewMarginLeft ="15dp"
+        app:leftTextViewPaddingLeft ="4dp"
         app:dividerColor="@color/black"
         app:backGroundColor="@color/colorPrimary"/>
+
+    <com.bhm.sdk.bhmlibrary.views.BaseWebView
+        android:id="@+id/webView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </com.bhm.sdk.bhmlibrary.views.BaseWebView>
 
 </LinearLayout>

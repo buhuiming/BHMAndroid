@@ -1,11 +1,15 @@
 package com.bhm.sdk.demo.activity;
 
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.webkit.WebView;
 import android.widget.Toast;
 
+import com.bhm.sdk.bhmlibrary.interfaces.WebViewCallBack;
+import com.bhm.sdk.bhmlibrary.views.BaseWebView;
 import com.bhm.sdk.demo.R;
 import com.bhm.sdk.bhmlibrary.views.TitleBar;
 
@@ -16,6 +20,7 @@ import com.bhm.sdk.bhmlibrary.views.TitleBar;
 public class TitleBarXMLActivity extends AppCompatActivity{
 
     private TitleBar titleBar;
+    private BaseWebView webView;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -54,6 +59,43 @@ public class TitleBarXMLActivity extends AppCompatActivity{
             @Override
             public void onTwoClick(View view) {
                 Toast.makeText(TitleBarXMLActivity.this, "双击标题栏...", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
+        webView = (BaseWebView) findViewById(R.id.webView);
+//        webView.getSettings().setJavaScriptEnabled(true);
+//        webView.setErrorPagePath("file:///android_asset/t_error.html");
+        webView.setProgressBarDrawable(R.drawable.progressbar);
+        webView.init(this, "https://www.baidu.com", true, new WebViewCallBack() {
+            @Override
+            public boolean shouldOverrideUrlLoading(WebView view, String url) {
+                return false;
+            }
+
+            @Override
+            public void onPageStarted(WebView view, String url, Bitmap favicon) {
+
+            }
+
+            @Override
+            public void onPageFinished(WebView view, String url) {
+
+            }
+
+            @Override
+            public void onLoadResource(WebView view, String url) {
+
+            }
+
+            @Override
+            public void onReceivedError(WebView view, int errorCode, String description, String failingUrl) {
+
+            }
+
+            @Override
+            public void onReceivedTitle(WebView view, String title) {
+
             }
         });
     }
