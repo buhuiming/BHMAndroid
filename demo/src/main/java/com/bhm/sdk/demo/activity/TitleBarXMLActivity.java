@@ -1,6 +1,5 @@
 package com.bhm.sdk.demo.activity;
 
-import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -10,8 +9,8 @@ import android.widget.Toast;
 
 import com.bhm.sdk.bhmlibrary.interfaces.WebViewCallBack;
 import com.bhm.sdk.bhmlibrary.views.BaseWebView;
-import com.bhm.sdk.demo.R;
 import com.bhm.sdk.bhmlibrary.views.TitleBar;
+import com.bhm.sdk.demo.R;
 
 /**
  * Created by bhm on 2018/5/7.
@@ -72,31 +71,7 @@ public class TitleBarXMLActivity extends AppCompatActivity{
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
                 return false;
             }
-
-            @Override
-            public void onPageStarted(WebView view, String url, Bitmap favicon) {
-
-            }
-
-            @Override
-            public void onPageFinished(WebView view, String url) {
-
-            }
-
-            @Override
-            public void onLoadResource(WebView view, String url) {
-
-            }
-
-            @Override
-            public void onReceivedError(WebView view, int errorCode, String description, String failingUrl) {
-
-            }
-
-            @Override
-            public void onReceivedTitle(WebView view, String title) {
-
-            }
+            //可以重写其他方法：onPageStarted、onPageFinished、onLoadResource、onReceivedError、onReceivedTitle
         });
     }
 }
