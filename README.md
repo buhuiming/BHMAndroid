@@ -8,13 +8,13 @@ RxLibrary工程：一些常用的工具类，以及常用的控件，主要用�
 
 集成：
 -------
-        compile 'com.bhm.sdk.bhmlibrary:BHMLibrary:1.1.8'
+        compile 'com.bhm.sdk.bhmlibrary:BHMLibrary:1.1.9'
 
         
         <dependency>
           <groupId>com.bhm.sdk.bhmlibrary</groupId>
           <artifactId>BHMLibrary</artifactId>
-          <version>1.1.7</version>
+          <version>1.1.9</version>
           <type>pom</type>
         </dependency>
         
@@ -40,3 +40,5 @@ RxLibrary工程：一些常用的工具类，以及常用的控件，主要用�
         >TitleBar添加新的方法。
    * 1.1.7——1.1.8</br>
         >webView的封装。
+   * 1.1.8——1.1.9</br>
+        >webView的回调函数更新。
