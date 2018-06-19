@@ -32,30 +32,7 @@ RxLibrary工程：一些常用的工具类，以及常用的控件，主要用�
                 return false;
             }
 
-            @Override
-            public void onPageStarted(WebView view, String url, Bitmap favicon) {
-
-            }
-
-            @Override
-            public void onPageFinished(WebView view, String url) {
-
-            }
-
-            @Override
-            public void onLoadResource(WebView view, String url) {
-
-            }
-
-            @Override
-            public void onReceivedError(WebView view, int errorCode, String description, String failingUrl) {
-
-            }
-
-            @Override
-            public void onReceivedTitle(WebView view, String title) {
-
-            }
+            //可以重写其他方法：onPageStarted、onPageFinished、onLoadResource、onReceivedError、onReceivedTitle
         });
         
 ### 3.方法介绍
