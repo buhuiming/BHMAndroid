@@ -1,6 +1,6 @@
 [![API](https://img.shields.io/badge/API-16%2B-brightgreen.svg)](https://android-arsenal.com/api?level=16) [![License](https://img.shields.io/badge/license-Apache%202-green.svg)](https://www.apache.org/licenses/LICENSE-2.0)[![Download](https://api.bintray.com/packages/bikie/bhm-sdk/BHMLibrary/images/download.svg) ](https://bintray.com/bikie/bhm-sdk/BHMLibrary/_latestVersion)
 ----
-RxLibrary工程：一些常用的工具类，以及常用的控件，主要用来提高开发效率。
+BHMAndroid工程：一些常用的工具类，以及常用的控件，主要用来提高开发效率。
 =====
 
 一、webView的封装
