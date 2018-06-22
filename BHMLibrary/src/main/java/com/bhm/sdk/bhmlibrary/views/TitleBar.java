@@ -84,9 +84,9 @@ public class TitleBar extends RelativeLayout {
 				-100);
 		float divider = typedArray.getDimension(R.styleable.title_bar_dividerHeight, 0f);
 
-		float leftTextSize = typedArray.getDimensionPixelSize(R.styleable.title_bar_leftTextSize, 16);
-		float rightTextSize = typedArray.getDimensionPixelSize(R.styleable.title_bar_rightTextSize, 18);
-		float titleTextSize = typedArray.getDimensionPixelSize(R.styleable.title_bar_titleTextSize, 16);
+		float leftTextSize = typedArray.getDimensionPixelSize(R.styleable.title_bar_leftTextSize, 42);
+		float rightTextSize = typedArray.getDimensionPixelSize(R.styleable.title_bar_rightTextSize, 42);
+		float titleTextSize = typedArray.getDimensionPixelSize(R.styleable.title_bar_titleTextSize, 51);
 
 		float leftViewMarginLeft = typedArray.getDimension(R.styleable.title_bar_leftViewMarginLeft, 15f);
 		float rightViewMarginRight = typedArray.getDimension(R.styleable.title_bar_rightViewMarginRight, 15f);

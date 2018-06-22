@@ -66,7 +66,7 @@ public class TitleBarXMLActivity extends AppCompatActivity{
 //        webView.getSettings().setJavaScriptEnabled(true);
 //        webView.setErrorPagePath("file:///android_asset/t_error.html");
         webView.setProgressBarDrawable(R.drawable.progressbar);
-        webView.init(this, "https://www.baidu.com", true, new WebViewCallBack() {
+        webView.init(this, "https://1.scrm.china-syqm.com/wxPay/wechat.html?", true, new WebViewCallBack() {
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
                 return false;

@@ -30,6 +30,7 @@ import com.bhm.sdk.bhmlibrary.utils.FileHelper;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.URLDecoder;
 
 
 /**
@@ -126,6 +127,18 @@ public class BaseWebView extends WebView {
 
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
+                String urlTemp = url.replaceAll("\\+", "%2B");
+                try {
+                    urlTemp = URLDecoder.decode(urlTemp, "UTF-8");
+                    String json = urlTemp.substring(urlTemp.indexOf(":", 0) + 1);
+                    String urlMethod = urlTemp.substring(0, urlTemp.indexOf(":", 0) + 1).trim();
+                    urlMethod = urlMethod.toUpperCase();
+                    if ("BHMERROR:".equals(urlMethod)){
+                        loadUrl(json);
+                    }
+                }catch (Exception e){
+
+                }
                 HitTestResult hitTestResult = view.getHitTestResult();
                 //hitTestResult==null解决重定向问题
                 if (!TextUtils.isEmpty(url) && hitTestResult == null) {
