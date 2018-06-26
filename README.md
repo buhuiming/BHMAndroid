@@ -8,13 +8,13 @@ BHMAndroid工程：一些常用的工具类，以及常用的控件，主要用�
 
 集成：
 -------
-        compile 'com.bhm.sdk.bhmlibrary:BHMLibrary:1.1.9'
+        compile 'com.bhm.sdk.bhmlibrary:BHMLibrary:1.2.0'
 
         
         <dependency>
           <groupId>com.bhm.sdk.bhmlibrary</groupId>
           <artifactId>BHMLibrary</artifactId>
-          <version>1.1.9</version>
+          <version>1.2.0</version>
           <type>pom</type>
         </dependency>
         
