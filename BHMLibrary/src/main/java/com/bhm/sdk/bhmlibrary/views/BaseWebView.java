@@ -135,6 +135,7 @@ public class BaseWebView extends WebView {
                     urlMethod = urlMethod.toUpperCase();
                     if ("BHMERROR:".equals(urlMethod)){
                         loadUrl(json);
+                        return callBack.shouldOverrideUrlLoading(view, json);
                     }
                 }catch (Exception e){
 
@@ -145,7 +146,7 @@ public class BaseWebView extends WebView {
                     view.loadUrl(url);
                     return true;
                 }
-                return callBack.shouldOverrideUrlLoading(view,url);
+                return callBack.shouldOverrideUrlLoading(view, url);
             };
             @Override
             public void onPageFinished(WebView view, String url) {

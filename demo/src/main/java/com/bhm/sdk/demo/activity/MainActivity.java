@@ -47,6 +47,7 @@ public class MainActivity extends AppCompatActivity {
         list.add("viewPager(取消预加载)");
         list.add("图库&拍照");
         list.add("webView");
+        list.add("APP异常信息捕获");
         return list;
     }
 
@@ -80,6 +81,10 @@ public class MainActivity extends AppCompatActivity {
             case 5:
                 intent.setClass(this, TitleBarXMLActivity.class);
                 break;
+            case 6:
+                //随意写一个闪退的异常
+                int i = 10/0;
+                return;
         }
         startActivity(intent);
     }
