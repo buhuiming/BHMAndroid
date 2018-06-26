@@ -3,14 +3,12 @@ package com.bhm.sdk.bhmlibrary.crash;
 import android.os.Handler;
 import android.os.Looper;
 
+import com.bhm.sdk.bhmlibrary.interfaces.ExceptionHandler;
+
 public final class Cockroach {
 
-	public interface ExceptionHandler {
-
-		void handlerException(Thread thread, Throwable throwable);
-	}
-
 	private Cockroach() {
+
 	}
 
 	private static ExceptionHandler sExceptionHandler;

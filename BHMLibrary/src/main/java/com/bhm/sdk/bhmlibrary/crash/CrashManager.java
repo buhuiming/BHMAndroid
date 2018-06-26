@@ -4,7 +4,7 @@ import android.os.Handler;
 import android.os.Looper;
 import android.util.Log;
 
-import com.bhm.sdk.bhmlibrary.interfaces.CrashResult;
+import com.bhm.sdk.bhmlibrary.interfaces.ExceptionHandler;
 
 /** 捕获APP崩溃日志管理类
  * Created by bhm on 2018/4/3.
@@ -13,7 +13,7 @@ import com.bhm.sdk.bhmlibrary.interfaces.CrashResult;
 public class CrashManager {
 
     private static CrashManager crashManager;
-    private CrashResult crashResult;
+    private ExceptionHandler crashResult;
 
     public static CrashManager getCrashManager(){
         if(null == crashManager){
@@ -22,7 +22,7 @@ public class CrashManager {
         return crashManager;
     }
 
-    public void init(CrashResult crashResult) {
+    public void init(ExceptionHandler crashResult) {
         this.crashResult = crashResult;
         initCrash();
     }
@@ -30,7 +30,7 @@ public class CrashManager {
         Cockroach.uninstall();
     }
     private void  initCrash(){
-        Cockroach.install(new Cockroach.ExceptionHandler() {
+        Cockroach.install(new ExceptionHandler() {
             // handlerException内部建议手动try{  你的异常处理逻辑  }catch(Throwable e){ } ，
             //以防handlerException内部再次抛出异常，导致循环调用handlerException
             @Override
