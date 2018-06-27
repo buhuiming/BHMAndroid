@@ -8,13 +8,13 @@ BHMAndroid工程：一些常用的工具类，以及常用的控件，主要用�
 
 集成：
 -------
-        compile 'com.bhm.sdk.bhmlibrary:BHMLibrary:1.2.0'
+        compile 'com.bhm.sdk.bhmlibrary:BHMLibrary:1.2.1'
 
         
         <dependency>
           <groupId>com.bhm.sdk.bhmlibrary</groupId>
           <artifactId>BHMLibrary</artifactId>
-          <version>1.2.0</version>
+          <version>1.2.1</version>
           <type>pom</type>
         </dependency>
         
@@ -31,6 +31,8 @@ BHMAndroid工程：一些常用的工具类，以及常用的控件，主要用�
 
 ### [五、webView的封装](https://github.com/buhuiming/BHMAndroid/blob/master/readme/webView%E7%9A%84%E5%B0%81%E8%A3%85.md)
 
+### [六、APP抛异常处理](https://github.com/buhuiming/BHMAndroid/blob/master/readme/APP%E6%8A%9B%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86.md)
+
 <br>
 <br>
 
@@ -44,3 +46,5 @@ BHMAndroid工程：一些常用的工具类，以及常用的控件，主要用�
         >webView的回调函数更新。
    * 1.1.9——1.2.0</br>
         >代码优化。
+   * 1.2.0——1.2.1</br>
+        >添加APP集成异常处理模块。
