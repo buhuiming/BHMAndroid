@@ -207,10 +207,6 @@ public class CameraGalleryGetPic {
         return "";
     }
 
-    /**
-     * 获取最新的头像文件名，同时删除旧头像文件
-     * 因为每次拍摄的头像都是独立的，所以需要传入对应的路径才能删除文件
-     */
     private void initPicPath() {
         String dir = getSDCardPath() + localFileName + "/";
         String filename = System.currentTimeMillis() + "." +
@@ -235,7 +231,7 @@ public class CameraGalleryGetPic {
             if (childFiles == null || childFiles.length == 0) {
                 file.delete();
                 return;
-            }else if(childFiles.length >= 1){//超过50张 把所有图片都删除
+            }else if(childFiles.length >= 50){//超过50张 把所有图片都删除
                 for (int i = 0; i < childFiles.length; i++) {
                     setCacheFile(childFiles[i]);
                 }
