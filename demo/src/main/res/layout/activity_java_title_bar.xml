@@ -14,4 +14,16 @@
         android:textSize="16sp"
         android:text="看什么"/>
 
+    <Button
+        android:id="@+id/btn_text"
+        android:layout_marginTop="50dp"
+        android:layout_width="250dp"
+        android:layout_height="48dp"
+        android:background="?android:attr/selectableItemBackgroundBorderless"
+        android:gravity="center"
+        android:text="看什么"
+        android:visibility="gone"
+        android:textSize="16sp"
+        android:textColor="@color/colorPrimary" />
+
 </LinearLayout>
