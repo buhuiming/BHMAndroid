@@ -39,8 +39,10 @@ public abstract class LazyLoadFragment extends Fragment{
         } else {
             rootView = inflater.inflate(setLayoutId(), null);
         }
-        initView();// 控件初始化
-        initListener();
+        if(!isInit) {
+            initView();// 控件初始化
+            initListener();
+        }
         isInit = true;
         onVisible();
         return rootView;
