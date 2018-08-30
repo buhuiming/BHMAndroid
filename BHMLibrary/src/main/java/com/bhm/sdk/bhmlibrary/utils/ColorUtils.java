@@ -1,5 +1,7 @@
 package com.bhm.sdk.bhmlibrary.utils;
 
+import android.graphics.Color;
+
 /**
  * Created by bhm on 2018/8/28.
  */
@@ -61,5 +63,31 @@ public class ColorUtils {
         builder.append(oldColor.replace("#", ""));
 
         return builder.toString();
+    }
+
+    /**
+     * 修改颜色透明度
+     *
+     * @param color
+     * @param alpha
+     * @return
+     */
+    public static int changeColorAlpha(int color, int alpha) {
+        int red = Color.red(color);
+        int green = Color.green(color);
+        int blue = Color.blue(color);
+
+        return Color.argb(alpha, red, green, blue);
+    }
+
+    /**
+     * @param color
+     * @param showAlpha
+     * @return
+     */
+    public static String getHexString(int color, boolean showAlpha) {
+        int base = showAlpha ? 0xFFFFFFFF : 0xFFFFFF;
+        String format = showAlpha ? "#%08X" : "#%06X";
+        return String.format(format, (base & color)).toUpperCase();
     }
 }
