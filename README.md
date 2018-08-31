@@ -8,13 +8,13 @@ BHMAndroid工程：一些常用的工具类，以及常用的控件，主要用�
 
 集成：
 -------
-        compile 'com.bhm.sdk.bhmlibrary:BHMLibrary:1.2.2'
+        compile 'com.bhm.sdk.bhmlibrary:BHMLibrary:1.2.3'
 
         
         <dependency>
           <groupId>com.bhm.sdk.bhmlibrary</groupId>
           <artifactId>BHMLibrary</artifactId>
-          <version>1.2.2</version>
+          <version>1.2.3</version>
           <type>pom</type>
         </dependency>
         
@@ -52,3 +52,5 @@ BHMAndroid工程：一些常用的工具类，以及常用的控件，主要用�
         >添加APP集成异常处理模块。
    * 1.2.1——1.2.2</br>
         >添加一些控件。
+   * 1.2.2——1.2.3</br>
+        >添加一些工具类，如FileUtils,DateUtils。
