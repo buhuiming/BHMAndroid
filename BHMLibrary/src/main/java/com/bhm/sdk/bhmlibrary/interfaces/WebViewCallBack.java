@@ -1,6 +1,9 @@
 package com.bhm.sdk.bhmlibrary.interfaces;
 
 import android.graphics.Bitmap;
+import android.net.Uri;
+import android.webkit.ValueCallback;
+import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 
 /**
@@ -37,5 +40,15 @@ public class WebViewCallBack extends WebViewCallBackImp{
     @Override
     public void onReceivedTitle(WebView view, String title) {
 
+    }
+
+    @Override
+    public void openFileChooser(ValueCallback<Uri> uploadMsg, String acceptType, String capture) {
+
+    }
+
+    @Override
+    public boolean onShowFileChooser(WebView webView, ValueCallback<Uri[]> filePathCallback, WebChromeClient.FileChooserParams fileChooserParams) {
+        return true;
     }
 }
