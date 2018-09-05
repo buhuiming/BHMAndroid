@@ -5,6 +5,7 @@ import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.net.http.SslError;
 import android.os.Build;
 import android.support.annotation.DrawableRes;
@@ -15,6 +16,7 @@ import android.view.View;
 import android.webkit.ConsoleMessage;
 import android.webkit.JsResult;
 import android.webkit.SslErrorHandler;
+import android.webkit.ValueCallback;
 import android.webkit.WebChromeClient;
 import android.webkit.WebResourceError;
 import android.webkit.WebResourceRequest;
@@ -266,6 +268,38 @@ public class BaseWebView extends WebView {
             public void onReceivedTitle(WebView view, String title) {
                 callBack.onReceivedTitle(view, title);
                 super.onReceivedTitle(view, title);
+            }
+
+            /**
+             * 8(Android 2.2) <= API <= 10(Android 2.3)回调此方法
+             */
+            public void openFileChooser(ValueCallback<Uri> uploadMsg) {
+                // (2)该方法回调时说明版本API < 21，此时将结果赋值给 mUploadCallbackBelow，使之 != null
+                callBack.openFileChooser(uploadMsg, null, null);
+            }
+
+            /**
+             * 11(Android 3.0) <= API <= 15(Android 4.0.3)回调此方法
+             */
+            public void openFileChooser(ValueCallback<Uri> uploadMsg, String acceptType) {
+                callBack.openFileChooser(uploadMsg, acceptType, null);
+            }
+
+            /**
+             * 16(Android 4.1.2) <= API <= 20(Android 4.4W.2)回调此方法
+             */
+            public void openFileChooser(ValueCallback<Uri> uploadMsg, String acceptType, String capture) {
+                callBack.openFileChooser(uploadMsg, acceptType, capture);
+            }
+
+            /**
+             * API >= 21(Android 5.0.1)回调此方法
+             */
+            @Override
+            public boolean onShowFileChooser(WebView webView, ValueCallback<Uri[]> filePathCallback, FileChooserParams fileChooserParams) {
+                // (1)该方法回调时说明版本API >= 21，此时将结果赋值给 mUploadCallbackAboveL，使之 != null
+                callBack.onShowFileChooser(webView, filePathCallback, fileChooserParams);
+                return true;
             }
         };
         return mWebChromeClient;
