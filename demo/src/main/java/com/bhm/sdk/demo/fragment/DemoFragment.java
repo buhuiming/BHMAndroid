@@ -10,17 +10,16 @@ import com.bhm.sdk.bhmlibrary.base.LazyLoadFragment;
 import com.bhm.sdk.demo.R;
 import com.bhm.sdk.demo.entity.DoGetEntity;
 import com.bhm.sdk.demo.http.HttpApi;
-import com.bhm.sdk.rxlibrary.rxjava.CallBack;
 import com.bhm.sdk.rxlibrary.rxjava.RxBaseActivity;
 import com.bhm.sdk.rxlibrary.rxjava.RxBuilder;
 import com.bhm.sdk.rxlibrary.rxjava.RxManager;
+import com.bhm.sdk.rxlibrary.rxjava.callback.CallBack;
 import com.bhm.sdk.rxlibrary.utils.RxLoadingDialog;
 import com.google.gson.Gson;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import io.reactivex.Observable;
-import io.reactivex.disposables.Disposable;
 
 /**
  * Created by bhm on 2018/5/25.
@@ -68,25 +67,10 @@ public class DemoFragment extends LazyLoadFragment {
                 .getData("Bearer aedfc1246d0b4c3f046be2d50b34d6ff", "1");
         builder.setCallBack(observable, new CallBack<DoGetEntity>() {
             @Override
-            public void onStart(Disposable disposable) {
-
-            }
-
-            @Override
             public void onSuccess(DoGetEntity response) {
                 Log.i("MainActivity--> ", response.getDate());
                 Toast.makeText(activity, response.getDate(), Toast.LENGTH_SHORT).show();
                 tv_text.setText(new Gson().toJson(response));
-            }
-
-            @Override
-            public void onFail(Throwable e) {
-
-            }
-
-            @Override
-            public void onComplete() {
-
             }
         });
     }

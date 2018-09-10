@@ -7,6 +7,8 @@ import android.util.DisplayMetrics;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 
 /**
@@ -94,4 +96,38 @@ public class DeviceUtils {
             activity.getWindow().setAttributes(lp);
         }
     }
+
+    /**
+     * 强制隐藏输入法键盘
+     */
+    public static void hideKeyBoard(EditText edittext) {
+        InputMethodManager inputMethodManager = (InputMethodManager)
+                edittext.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+        if (inputMethodManager.isActive()) {
+            inputMethodManager.hideSoftInputFromWindow(edittext.getWindowToken(), 0);
+        }
+    }
+
+    /**
+     * 强制显示输入法键盘
+     */
+    public static void showKeyBoard(View view) {
+        InputMethodManager inputMethodManager = (InputMethodManager)
+                view.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+        inputMethodManager.showSoftInput(view, InputMethodManager.SHOW_FORCED);
+    }
+
+    /**     * 输入法是否显示
+     */
+    public static boolean isKeyBoardActive(View view) {
+        boolean bool = false;
+        InputMethodManager inputMethodManager = (InputMethodManager)
+                view.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+        if (inputMethodManager.isActive()) {
+            bool = true;
+        }
+        return bool;
+    }
+
+
 }
