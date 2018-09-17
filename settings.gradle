@@ -1,1 +1,1 @@
-include ':demo', ':BHMLibrary'
+include ':demo', ':BHMLibrary', ':ActivityResult'

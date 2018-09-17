@@ -8,6 +8,7 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/ActivityResult" />
             <option value="$PROJECT_DIR$/BHMLibrary" />
             <option value="$PROJECT_DIR$/demo" />
           </set>
