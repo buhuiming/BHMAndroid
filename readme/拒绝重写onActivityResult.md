@@ -3,6 +3,17 @@
 
 ## 参考RxPermissions的做法，RxPermissions内部持有一个Fragment，这个fragment没有视图，只负责请求权限和返回结果，相当于一个桥梁的作用，通过rxPermissions发起request的时候，其实并不是activity去request，而是通过这个fragment去请求，然后在fragment的onRequestPermissionsResult中把结果发送出来，如此来避开activity的onRequestPermissionsResult方法。
 
+### 引用
+        compile 'com.bhm.sdk.bhmlibrary:ActivityResult:1.0.0'
+        
+        
+        <dependency>
+          <groupId>com.bhm.sdk.bhmlibrary</groupId>
+          <artifactId>ActivityResult</artifactId>
+          <version>1.0.0</version>
+          <type>pom</type>
+        </dependency>
+
 ### 用法
 
         new ActivityResult(this).startForResult(Target.class, new ActivityResult.Callback() {
