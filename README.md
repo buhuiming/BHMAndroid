@@ -35,6 +35,8 @@ BHMAndroid工程：一些常用的工具类，以及常用的控件，主要用�
 
 ### [七、常用的一些控件](https://github.com/buhuiming/BHMAndroid/blob/master/readme/%E5%B8%B8%E7%94%A8%E7%9A%84%E6%8E%A7%E4%BB%B6.md)
 
+### [八、拒绝重写Activity或Fragment的onActivityResult方法](https://github.com/buhuiming/BHMAndroid/blob/master/readme/%E6%8B%92%E7%BB%9D%E9%87%8D%E5%86%99onActivityResult.md)
+
 <br>
 <br>
 
