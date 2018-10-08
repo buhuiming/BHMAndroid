@@ -46,6 +46,7 @@ public class BaseWebView extends WebView {
     private boolean isProgressBar = false;
     private @DrawableRes int drawableRes = 0;
     private String errorPagePath = "";
+    private String baseUrl = "";
 
     public BaseWebView(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -61,6 +62,7 @@ public class BaseWebView extends WebView {
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     public void init(Context context, String baseUrl, boolean isProgressBar, WebViewCallBack callBack) {
+        this.baseUrl = baseUrl;
         this.isProgressBar = isProgressBar;
         if(isProgressBar) {
             progressbar = new ProgressBar(context, null,
@@ -136,8 +138,8 @@ public class BaseWebView extends WebView {
                     String urlMethod = urlTemp.substring(0, urlTemp.indexOf(":", 0) + 1).trim();
                     urlMethod = urlMethod.toUpperCase();
                     if ("BHMERROR:".equals(urlMethod)){
-                        loadUrl(json);
-                        return callBack.shouldOverrideUrlLoading(view, json);
+                        loadUrl(baseUrl);
+                        return true;
                     }
                 }catch (Exception e){
 
