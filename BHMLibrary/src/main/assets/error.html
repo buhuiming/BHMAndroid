@@ -48,14 +48,16 @@
     ._ul li{
       line-height: 20px;
     }
-
+    .box .reload {
+      position: absolute;
+      bottom: 25px;
+      z-index: 9;
+      font-size: 16px;
+    }
   </style>
 </head>
 <body>
 <div class="box">
-    <div class="centent">
-
-    </div>
     <div class="header">无法加载页面</div>
     <a href="" class="text-overflow _link" id="link"></a>
     <div class="_hr"></div>
@@ -64,6 +66,7 @@
         <li>此网址可能暂时出现故障</li>
         <li>输入的网址不正确</li>
     </ul>
+    <a href="" class="text-overflow _link reload" id="link1">刷新试试？</a>
 </div>
 
 <script>
@@ -79,6 +82,10 @@
     if(getLink) {
       getLink.innerHTML = getUrlParms('path');
       getLink.setAttribute("href", 'BHMERROR:' + getUrlParms('path'));
+    }
+    var getLink1 = document.getElementById('link1');
+    if(getLink1) {
+      getLink1.setAttribute("href", 'BHMERROR:' + getUrlParms('path'));
     }
   </script>
 </body>
