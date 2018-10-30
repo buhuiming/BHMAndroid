@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="Encoding" defaultCharsetForPropertiesFiles="UTF-8">
+    <file url="file://$PROJECT_DIR$/ActivityResult/src/main/java/com/bhm/sdk/onresult" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/BHMLibrary" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/RxLibrary" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/build" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/BHMLibrary/src/main/java/com/bhm/sdk/bhmlibrary" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/BHMLibrary/src/main/java/com/bhm/sdk/bhmlibrary/utils/BitmapUtils.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/build.gradle" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/demo" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/demo/src/main/java/com/bhm/sdk/demo/activity/MainActivity.java" charset="UTF-8" />
