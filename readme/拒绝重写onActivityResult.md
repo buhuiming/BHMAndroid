@@ -16,15 +16,37 @@
 
 ### 用法
 
-        new ActivityResult(this).startForResult(Target.class, new ActivityResult.Callback() {
+                Intent intent = new Intent();
+                intent.setClass(this, Target.class);
+                new ActivityResult(this).startForResult(intent, new ActivityResult.Callback() {
                     @Override
                     public void onActivityResult(int resultCode, Intent data) {
-                        if (resultCode == Activity.RESULT_OK) {
-                            
-                        }else{
-                            
-                        }
+                        Toast.makeText(MainActivity.this, data == null? "null data" + resultCode :
+                                data.getStringExtra("data") + resultCode, Toast.LENGTH_SHORT).show();
                     }
                 });
+                
+                或者：
+                new ActivityResult(this).startForResult(intent)
+                        .subscribe(new Consumer<ResultData>() {
+                            @Override
+                            public void accept(ResultData resultData) throws Exception {
+                                if(null == resultData){
+                                    return;
+                                }
+                                int resultCode = resultData.getResultCode();
+                                Intent data = resultData.getData();
+                                Toast.makeText(MainActivity.this, data == null? "null data" + resultCode :
+                                        data.getStringExtra("data") + resultCode, Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                
+                
+                
+        Activity关闭的时候
+                Intent intent = new Intent();
+                intent.putExtra("data", "resultCode is ");
+                setResult(1111, intent);
+                finish();
 
 
