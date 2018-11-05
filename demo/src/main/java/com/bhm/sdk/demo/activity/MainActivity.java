@@ -7,13 +7,18 @@ import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.Toast;
 
 import com.bhm.sdk.demo.R;
 import com.bhm.sdk.demo.adapter.MainUIAdapter;
+import com.bhm.sdk.onresult.ActivityResult;
+import com.bhm.sdk.onresult.ResultData;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import io.reactivex.functions.Consumer;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -65,7 +70,27 @@ public class MainActivity extends AppCompatActivity {
         switch (position){
             case 0:
                 intent.setClass(this, TitleBarXMLActivity.class);
-                break;
+                /*new ActivityResult(this).startForResult(intent, new ActivityResult.Callback() {
+                    @Override
+                    public void onActivityResult(int resultCode, Intent data) {
+                        Toast.makeText(MainActivity.this, data == null? "null data" + resultCode :
+                                data.getStringExtra("data") + resultCode, Toast.LENGTH_SHORT).show();
+                    }
+                });*/
+                new ActivityResult(this).startForResult(intent)
+                        .subscribe(new Consumer<ResultData>() {
+                            @Override
+                            public void accept(ResultData resultData) throws Exception {
+                                if(null == resultData){
+                                    return;
+                                }
+                                int resultCode = resultData.getResultCode();
+                                Intent data = resultData.getData();
+                                Toast.makeText(MainActivity.this, data == null? "null data" + resultCode :
+                                        data.getStringExtra("data") + resultCode, Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                return;
             case 1:
                 intent.setClass(this, TitleBarExtendsBaseActivity.class);
                 break;
