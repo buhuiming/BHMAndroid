@@ -1,7 +1,9 @@
 package com.bhm.sdk.bhmlibrary.views;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
 import android.text.TextUtils;
@@ -280,6 +282,19 @@ public class TitleBar extends RelativeLayout {
 	 */
 	public TitleBar setLeftOnClickListener(OnClickListener listener){
 		ll_title_bar_left.setOnClickListener(listener);
+		return this;
+	}
+
+	/** 设置左边布局点击关闭界面
+	 * @param activity
+	 */
+	public TitleBar setLeftViewClickToClose(final @NonNull Activity activity){
+		ll_title_bar_left.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				activity.finish();
+			}
+		});
 		return this;
 	}
 

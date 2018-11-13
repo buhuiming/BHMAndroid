@@ -38,12 +38,13 @@ public class TitleBarExtendsBaseActivity extends TitleBarActivity {
         titleBar.setLeftViewMarginLeft(20, true);
         titleBar.setRightViewMarginRight(20, true);
 
-        titleBar.setLeftOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
+//        titleBar.setLeftOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                finish();
+//            }
+//        });
+        titleBar.setLeftViewClickToClose(this);
         titleBar.setRightOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
