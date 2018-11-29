@@ -1,6 +1,5 @@
 package com.bhm.sdk.demo.activity;
 
-import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -56,7 +55,7 @@ public class GetPictureActivity extends AppCompatActivity {
 
         getPic = CameraGalleryGetPic.newBuilder(this)
                 .setPicPath(path)
-                .isCrop(false)//是否剪切图片，默认为false
+                .isCrop(true)//是否剪切图片，默认为false
                 .setScale(320, 320)//isCrop(true)有效
                 .setFormat(CameraGalleryGetPic.FORMAT_PNG)
                 .build();
@@ -67,18 +66,16 @@ public class GetPictureActivity extends AppCompatActivity {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.btn_camera:
-                getPic.cameraGetPic();
+                getPic.cameraGetPic(getPictureCall());
                 break;
             case R.id.btn_gallery:
-                getPic.galleryGetPic();
+                getPic.galleryGetPic(getPictureCall());
                 break;
         }
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        getPic.call(requestCode, resultCode, data, new PictureCall() {
+    private PictureCall getPictureCall(){
+        return new PictureCall() {
             @Override
             public void result(String path) {
                 Bitmap bitmap = BitmapFactory.decodeFile(path);
@@ -86,6 +83,6 @@ public class GetPictureActivity extends AppCompatActivity {
                     imageView.setImageBitmap(bitmap);
                 }
             }
-        });
+        };
     }
 }

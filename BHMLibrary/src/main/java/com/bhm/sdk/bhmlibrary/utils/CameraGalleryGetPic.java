@@ -18,6 +18,7 @@ import android.text.TextUtils;
 import android.widget.Toast;
 
 import com.bhm.sdk.bhmlibrary.interfaces.PictureCall;
+import com.bhm.sdk.onresult.ActivityResult;
 import com.tbruyelle.rxpermissions2.RxPermissions;
 
 import java.io.File;
@@ -34,10 +35,6 @@ import static android.content.Intent.FLAG_GRANT_WRITE_URI_PERMISSION;
 
 public class CameraGalleryGetPic {
 
-    private static final int CAMERA_CODE = 8888;
-    private static final int GALLERY_CODE = 8889;
-    private static final int CUT_CAMERA_CODE = 8898;
-    private static final int CUT_GALLERY_CODE = 8899;
     public static final String localFileName = "CGGetPic";
     public static final String FORMAT_JPEG = Bitmap.CompressFormat.JPEG.toString();
     public static final String FORMAT_PNG = Bitmap.CompressFormat.PNG.toString();
@@ -61,7 +58,7 @@ public class CameraGalleryGetPic {
 
     /** get picture from camera
      */
-    public void cameraGetPic(){
+    public void cameraGetPic(final PictureCall call){
         RxPermissions permissions = new RxPermissions(builder.activity);
         permissions.request(Manifest.permission.CAMERA)
                 .subscribe(new Consumer<Boolean>() {
@@ -75,8 +72,16 @@ public class CameraGalleryGetPic {
                             Intent camera = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
                             camera.putExtra(MediaStore.EXTRA_OUTPUT,
                                     getUriForFile(builder.activity, new File(temporaryPath)));
-                            builder.activity.startActivityForResult(camera, CAMERA_CODE);
-
+                            new ActivityResult(builder.activity).startForResult(camera, new ActivityResult.Callback() {
+                                @Override
+                                public void onActivityResult(int resultCode, Intent data) {
+                                    if(builder.isCrop){
+                                        cutImageCamera(call, getUriForFile(builder.activity, new File(temporaryPath)));
+                                    }else if(null != call){
+                                        call.result(temporaryPath);
+                                    }
+                                }
+                            });
                         }
                     }
                 });
@@ -84,7 +89,7 @@ public class CameraGalleryGetPic {
 
     /** get picture from gallery
      */
-    public void galleryGetPic() {
+    public void galleryGetPic(final PictureCall call) {
         RxPermissions permissions = new RxPermissions(builder.activity);
         permissions.request(Manifest.permission.WRITE_EXTERNAL_STORAGE,
                 Manifest.permission.READ_EXTERNAL_STORAGE)
@@ -98,45 +103,30 @@ public class CameraGalleryGetPic {
                             initPicPath();
                             Intent album = new Intent(Intent.ACTION_PICK,
                                     android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                            builder.activity.startActivityForResult(album, GALLERY_CODE);
+                            new ActivityResult(builder.activity).startForResult(album, new ActivityResult.Callback() {
+                                @Override
+                                public void onActivityResult(int resultCode, Intent data) {
+                                    if(builder.isCrop){
+                                        cutImageGallery(call, data.getData());
+                                    }else if(null != call){
+                                        //获取照片路径
+                                        try {
+                                            String[] filePathColumn = {MediaStore.Audio.Media.DATA};
+                                            Cursor cursor = builder.activity.getContentResolver().query(
+                                                    data.getData(), filePathColumn, null, null, null);
+                                            cursor.moveToFirst();
+                                            String photoPath = cursor.getString(cursor.getColumnIndex(filePathColumn[0]));
+                                            cursor.close();
+                                            call.result(photoPath);
+                                        }catch (Exception e){
+
+                                        }
+                                    }
+                                }
+                            });
                         }
                     }
                 });
-    }
-
-    public void call(int requestCode, int resultCode, Intent dataIntent, PictureCall call){
-        if (requestCode == CAMERA_CODE && resultCode == Activity.RESULT_OK) {//拍照
-            if(builder.isCrop){
-                cutImageCamera(getUriForFile(builder.activity, new File(temporaryPath)));
-            }else if(null != call){
-                call.result(temporaryPath);
-            }
-        } else if (requestCode == GALLERY_CODE && resultCode == Activity.RESULT_OK) {//相册
-            if(builder.isCrop){
-                cutImageGallery(dataIntent.getData());
-            }else if(null != call){
-                //获取照片路径
-                try {
-                    String[] filePathColumn = {MediaStore.Audio.Media.DATA};
-                    Cursor cursor = builder.activity.getContentResolver().query(
-                            dataIntent.getData(), filePathColumn, null, null, null);
-                    cursor.moveToFirst();
-                    String photoPath = cursor.getString(cursor.getColumnIndex(filePathColumn[0]));
-                    cursor.close();
-                    call.result(photoPath);
-                }catch (Exception e){
-
-                }
-            }
-        } else if (requestCode == CUT_GALLERY_CODE && resultCode == Activity.RESULT_OK) {//相册裁剪
-            if(null != call){
-                call.result(temporaryPath);
-            }
-        } else if (requestCode == CUT_CAMERA_CODE && resultCode == Activity.RESULT_OK) {//相机裁剪
-            if(null != call){
-                call.result(temporaryPath);
-            }
-        }
     }
 
     public static class Builder{
@@ -250,9 +240,10 @@ public class CameraGalleryGetPic {
     }
 
     /** 相册裁剪
+     * @param call
      * @param uri
      */
-    private void cutImageGallery(Uri uri) {
+    private void cutImageGallery(final PictureCall call, Uri uri) {
         File f = new File(temporaryPath);
         if (f.exists()) {
             f.delete();
@@ -272,13 +263,21 @@ public class CameraGalleryGetPic {
         intent.putExtra("outputFormat", TextUtils.isEmpty(builder.format)
                 ? FORMAT_JPEG : builder.format);
         intent.putExtra("noFaceDetection", true);
-        builder.activity.startActivityForResult(intent, CUT_GALLERY_CODE);
+        new ActivityResult(builder.activity).startForResult(intent, new ActivityResult.Callback() {
+            @Override
+            public void onActivityResult(int resultCode, Intent data) {
+                if(null != call){
+                    call.result(temporaryPath);
+                }
+            }
+        });
     }
 
     /**相机裁剪
+     * @param call
      * @param uri
      */
-    private void cutImageCamera(Uri uri) {
+    private void cutImageCamera(final PictureCall call, Uri uri) {
         if (uri == null) {
             return;
         }
@@ -300,6 +299,13 @@ public class CameraGalleryGetPic {
         intent.putExtra("noFaceDetection", false);//去除默认的人脸识别，否则和剪裁匡重叠
         intent.putExtra("outputFormat", TextUtils.isEmpty(builder.format)
                 ? FORMAT_JPEG : builder.format);
-        builder.activity.startActivityForResult(intent, CUT_CAMERA_CODE);
+        new ActivityResult(builder.activity).startForResult(intent, new ActivityResult.Callback() {
+            @Override
+            public void onActivityResult(int resultCode, Intent data) {
+                if(null != call){
+                    call.result(temporaryPath);
+                }
+            }
+        });
     }
 }
