@@ -5,7 +5,7 @@
 
 ### 引用
         compile 'com.bhm.sdk.bhmlibrary:ActivityResult:1.0.1'
-        
+        compile 'io.reactivex.rxjava2:rxjava:2.1.8'
         
         <dependency>
           <groupId>com.bhm.sdk.bhmlibrary</groupId>
