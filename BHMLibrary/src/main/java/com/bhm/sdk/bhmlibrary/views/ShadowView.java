@@ -1,6 +1,7 @@
 package com.bhm.sdk.bhmlibrary.views;
 
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.ColorFilter;
 import android.graphics.LinearGradient;
 import android.graphics.Paint;
@@ -13,8 +14,6 @@ import android.support.annotation.ColorInt;
 import android.support.annotation.Nullable;
 import android.support.v4.view.ViewCompat;
 import android.view.View;
-
-import com.bhm.sdk.bhmlibrary.R;
 
 /** 圆角，阴影，颜色的view
  *  拒绝再重复的写shape的xml
@@ -31,10 +30,10 @@ public class ShadowView {
         private View view;
         //颜色
         @ColorInt
-        private int mColor = R.color.color_blue;
+        private int mColor = Color.BLUE;
         //阴影颜色
         @ColorInt
-        private int mShadowColor = R.color.white;
+        private int mShadowColor = Color.WHITE;
         //当需要渐变色时，可以传一个颜色数组进来，默认会从左到右渐进变色
         private int[] mGradientColorArray;
         //与上面的渐变色数组配合使用，指定每个颜色的位置（注意必须与上面的颜色数组length一样）
