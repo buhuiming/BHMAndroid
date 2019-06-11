@@ -21,7 +21,7 @@ public class TitleBarExtendsBaseActivity extends TitleBarActivity {
         titleBar.setTitleTextColor(R.color.black);
         titleBar.setRightTextColor(R.color.black);
         titleBar.setLeftTextColor(R.color.black);
-        titleBar.setTitleText("集成Base");
+        titleBar.setTitleText("标题很长的标题很长的标题很长的标题很长的");
         titleBar.setRightText("提交");
         titleBar.setLeftText("后退");
         titleBar.setLeftViewBackgroundResource(R.drawable.img_close_source);
@@ -33,10 +33,10 @@ public class TitleBarExtendsBaseActivity extends TitleBarActivity {
         titleBar.setTitleTextSize(18);
         titleBar.setLeftTextSize(16);
         titleBar.setRightTextSize(16);
-        titleBar.setLeftTextViewPaddingLeft(18, true);
-        titleBar.setRightTextViewPaddingRight(18, true);
-        titleBar.setLeftViewMarginLeft(20, true);
-        titleBar.setRightViewMarginRight(20, true);
+        titleBar.setLeftTextViewPaddingLeft(2, true);
+        titleBar.setRightTextViewPaddingRight(2, true);
+        titleBar.setLeftViewMarginLeft(15, true);
+        titleBar.setRightViewMarginRight(15, true);
 
 //        titleBar.setLeftOnClickListener(new View.OnClickListener() {
 //            @Override

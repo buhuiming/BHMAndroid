@@ -30,11 +30,11 @@ import com.bhm.sdk.bhmlibrary.utils.DisplayUtil;
 public class TitleBar extends RelativeLayout {
 
 	private Context context;
-	private TextView tv_title_bar_title;//标题
+	private AutoScaleTextView tv_title_bar_title;//标题
 	private ImageView img_title_bar_left;//左边image
 	private ImageView img_title_bar_right;//右边image
-	private TextView tv_title_bar_left;//左边文字
-	private TextView tv_title_bar_right;//右边文字
+	private AutoScaleTextView tv_title_bar_left;//左边文字
+	private AutoScaleTextView tv_title_bar_right;//右边文字
 	private RelativeLayout rl_base_title_bar;
 	private LinearLayout ll_title_bar_left;
 	private LinearLayout ll_title_bar_right;
@@ -62,38 +62,38 @@ public class TitleBar extends RelativeLayout {
 
 	private void init(Context context, AttributeSet attrs){
 		initView(context);
-		TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.title_bar);
-		float titleBarHeight = typedArray.getDimension(R.styleable.title_bar_titleBarHeight, 48f);
-		int backGroundColor = typedArray.getColor(R.styleable.title_bar_backGroundColor, ContextCompat.
+		TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.TitleBar);
+		float titleBarHeight = typedArray.getDimension(R.styleable.TitleBar_titleBarHeight, 48f);
+		int backGroundColor = typedArray.getColor(R.styleable.TitleBar_backGroundColor, ContextCompat.
 				getColor(context, R.color.white));
-		int titleTextColor = typedArray.getColor(R.styleable.title_bar_titleTextColor, ContextCompat.
+		int titleTextColor = typedArray.getColor(R.styleable.TitleBar_titleTextColor, ContextCompat.
 				getColor(context, R.color.black));
-		int rightTextColor = typedArray.getColor(R.styleable.title_bar_rightTextColor, ContextCompat.
+		int rightTextColor = typedArray.getColor(R.styleable.TitleBar_rightTextColor, ContextCompat.
 				getColor(context, R.color.black));
-		int leftTextColor = typedArray.getColor(R.styleable.title_bar_leftTextColor, ContextCompat.
+		int leftTextColor = typedArray.getColor(R.styleable.TitleBar_leftTextColor, ContextCompat.
 				getColor(context, R.color.black));
-		int dividerColor = typedArray.getColor(R.styleable.title_bar_dividerColor, ContextCompat.
+		int dividerColor = typedArray.getColor(R.styleable.TitleBar_dividerColor, ContextCompat.
 				getColor(context, R.color.color_divider));
-		String titleText = typedArray.getString(R.styleable.title_bar_titleText);
-		String rightText = typedArray.getString(R.styleable.title_bar_rightText);
-		String leftText = typedArray.getString(R.styleable.title_bar_leftText);
-		boolean isLeftViewShow = typedArray.getBoolean(R.styleable.title_bar_isLeftViewShow,false);
-		boolean isRightViewShow = typedArray.getBoolean(R.styleable.title_bar_isRightViewShow,false);
+		String titleText = typedArray.getString(R.styleable.TitleBar_titleText);
+		String rightText = typedArray.getString(R.styleable.TitleBar_rightText);
+		String leftText = typedArray.getString(R.styleable.TitleBar_leftText);
+		boolean isLeftViewShow = typedArray.getBoolean(R.styleable.TitleBar_isLeftViewShow,false);
+		boolean isRightViewShow = typedArray.getBoolean(R.styleable.TitleBar_isRightViewShow,false);
 
-		int leftViewBackgroundResource = typedArray.getResourceId(R.styleable.title_bar_leftViewBackgroundResource,
+		int leftViewBackgroundResource = typedArray.getResourceId(R.styleable.TitleBar_leftViewBackgroundResource,
 				-100);
-		int rightViewBackgroundResource = typedArray.getResourceId(R.styleable.title_bar_rightViewBackgroundResource,
+		int rightViewBackgroundResource = typedArray.getResourceId(R.styleable.TitleBar_rightViewBackgroundResource,
 				-100);
-		float divider = typedArray.getDimension(R.styleable.title_bar_dividerHeight, 0f);
+		float divider = typedArray.getDimension(R.styleable.TitleBar_dividerHeight, 0f);
 
-		float leftTextSize = typedArray.getDimensionPixelSize(R.styleable.title_bar_leftTextSize, 42);
-		float rightTextSize = typedArray.getDimensionPixelSize(R.styleable.title_bar_rightTextSize, 42);
-		float titleTextSize = typedArray.getDimensionPixelSize(R.styleable.title_bar_titleTextSize, 51);
+		float leftTextSize = typedArray.getDimensionPixelSize(R.styleable.TitleBar_leftTextSize, 42);
+		float rightTextSize = typedArray.getDimensionPixelSize(R.styleable.TitleBar_rightTextSize, 42);
+		float titleTextSize = typedArray.getDimensionPixelSize(R.styleable.TitleBar_titleTextSize, 51);
 
-		float leftViewMarginLeft = typedArray.getDimension(R.styleable.title_bar_leftViewMarginLeft, 15f);
-		float rightViewMarginRight = typedArray.getDimension(R.styleable.title_bar_rightViewMarginRight, 15f);
-		float leftTextViewPaddingLeft = typedArray.getDimension(R.styleable.title_bar_leftTextViewPaddingLeft, 4f);
-		float rightTextViewPaddingRight = typedArray.getDimension(R.styleable.title_bar_rightTextViewPaddingRight, 4f);
+		float leftViewMarginLeft = typedArray.getDimension(R.styleable.TitleBar_leftViewMarginLeft, 15f);
+		float rightViewMarginRight = typedArray.getDimension(R.styleable.TitleBar_rightViewMarginRight, 15f);
+		float leftTextViewPaddingLeft = typedArray.getDimension(R.styleable.TitleBar_leftTextViewPaddingLeft, 4f);
+		float rightTextViewPaddingRight = typedArray.getDimension(R.styleable.TitleBar_rightTextViewPaddingRight, 4f);
 
 		setTitleBarHeight(titleBarHeight, false);
 		setDividerHeight(divider, false);
@@ -126,11 +126,11 @@ public class TitleBar extends RelativeLayout {
 		// 加载布局
 		LayoutInflater.from(context).inflate(R.layout.layout_title_bar, this);
 		// 获取控件
-		tv_title_bar_title = (TextView) findViewById(R.id.tv_title_bar_title);
+		tv_title_bar_title = (AutoScaleTextView) findViewById(R.id.tv_title_bar_title);
 		img_title_bar_left = (ImageView) findViewById(R.id.img_title_bar_left);
 		img_title_bar_right = (ImageView) findViewById(R.id.img_title_bar_right);
-		tv_title_bar_left = (TextView) findViewById(R.id.tv_title_bar_left);
-		tv_title_bar_right = (TextView) findViewById(R.id.tv_title_bar_right);
+		tv_title_bar_left = (AutoScaleTextView) findViewById(R.id.tv_title_bar_left);
+		tv_title_bar_right = (AutoScaleTextView) findViewById(R.id.tv_title_bar_right);
 		rl_base_title_bar = (RelativeLayout) findViewById(R.id.rl_base_title_bar);
 		ll_title_bar_left = (LinearLayout) findViewById(R.id.ll_title_bar_left);
 		ll_title_bar_right = (LinearLayout) findViewById(R.id.ll_title_bar_right);
@@ -222,8 +222,8 @@ public class TitleBar extends RelativeLayout {
 	 * @param title
 	 */
 	public TitleBar setTitleText(String title){
-		if(!TextUtils.isEmpty(title) && title.length() >= 12){
-			tv_title_bar_title.setText(title.substring(0,12)+"...");
+		if(!TextUtils.isEmpty(title) && title.length() >= 20){
+			tv_title_bar_title.setText(title.substring(0,20)+"...");
 		}else {
 			tv_title_bar_title.setText(title);
 		}
@@ -242,8 +242,8 @@ public class TitleBar extends RelativeLayout {
 	 * @param title
 	 */
 	public TitleBar setRightText(String title){
-		if(!TextUtils.isEmpty(title) && title.length() >= 6){
-			tv_title_bar_right.setText(title.substring(0,6)+"...");
+		if(!TextUtils.isEmpty(title) && title.length() >= 7){
+			tv_title_bar_right.setText(title.substring(0,7)+"...");
 		}else {
 			tv_title_bar_right.setText(title);
 		}
@@ -261,8 +261,8 @@ public class TitleBar extends RelativeLayout {
 	 * @param title
 	 */
 	public TitleBar setLeftText(String title){
-		if(!TextUtils.isEmpty(title) && title.length() >= 12){
-			tv_title_bar_left.setText(title.substring(0,12)+"...");
+		if(!TextUtils.isEmpty(title) && title.length() >= 7){
+			tv_title_bar_left.setText(title.substring(0,7)+"...");
 		}else {
 			tv_title_bar_left.setText(title);
 		}
@@ -408,6 +408,21 @@ public class TitleBar extends RelativeLayout {
 		}else {
 			img_title_bar_left.setBackgroundResource(res);
 		}
+		return this;
+	}
+
+	public TitleBar setLeftTextMinTextSize(float minTextSize){
+		tv_title_bar_left.setMinTextSize(minTextSize);
+		return this;
+	}
+
+	public TitleBar setRightTextMinTextSize(float minTextSize){
+		tv_title_bar_right.setMinTextSize(minTextSize);
+		return this;
+	}
+
+	public TitleBar setTitleTextMinTextSize(float minTextSize){
+		tv_title_bar_title.setMinTextSize(minTextSize);
 		return this;
 	}
 

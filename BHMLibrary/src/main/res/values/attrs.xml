@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    
-    <declare-styleable name="title_bar">
+    <declare-styleable name="TitleBar">
         <attr name="titleBarHeight" format="dimension" />
         <attr name="dividerHeight" format="dimension" />
         <attr name="backGroundColor" format="color" />
@@ -25,4 +24,7 @@
         <attr name="rightTextViewPaddingRight" format="dimension" />
     </declare-styleable>
 
+    <declare-styleable name="AutoScaleTextView">
+        <attr name="minTextSize" format="dimension"/>
+    </declare-styleable>
 </resources>
