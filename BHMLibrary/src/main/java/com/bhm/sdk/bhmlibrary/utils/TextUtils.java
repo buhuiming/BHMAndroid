@@ -1,5 +1,6 @@
 package com.bhm.sdk.bhmlibrary.utils;
 
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
 import java.util.Locale;
@@ -30,7 +31,7 @@ public class TextUtils {
      * @return
      */
     public static boolean isNullString(@Nullable String str) {
-        return str == null || str.length() == 0 || "".equals(str) || "null".equals(str);
+        return str == null || str.length() == 0 || "null".equals(str);
     }
 
     /**
@@ -52,5 +53,16 @@ public class TextUtils {
         } else {
             return String.format(Locale.getDefault(), "%.3fGB", (double) byteNum / GB);
         }
+    }
+
+    public static String stringIfNull(String res, @NonNull String nullStr) {
+        if(TextUtils.isNullString(res)){
+            return nullStr;
+        }
+        return res;
+    }
+
+    public static String stringIfNull(String res) {
+        return stringIfNull(res, "--");
     }
 }

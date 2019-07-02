@@ -2,6 +2,7 @@
 <resources>
     <color name="white">#FFFFFF</color>
     <color name="black">#000000</color>
+    <color name="hint">#70000000</color>
     <color name="color_divider">#e9e9eb</color><!--描边 分割线-->
     <color name="color_blue">#0ca5f4</color><!--主色-->
 </resources>

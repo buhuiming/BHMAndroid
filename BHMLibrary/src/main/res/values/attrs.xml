@@ -27,4 +27,12 @@
     <declare-styleable name="AutoScaleTextView">
         <attr name="minTextSize" format="dimension"/>
     </declare-styleable>
+
+    <declare-styleable name="TextImageView">
+        <attr name="hintText" format="string" />
+        <attr name="hintTextColor" format="color" />
+        <attr name="textColor" format="color" />
+        <attr name="drawableRightResource" format="reference" />
+        <attr name="drawableRightPaddingLeft" format="dimension" />
+    </declare-styleable>
 </resources>

@@ -1,0 +1,117 @@
+package com.bhm.sdk.bhmlibrary.views;
+
+import android.content.Context;
+import android.content.res.TypedArray;
+import android.support.v4.content.ContextCompat;
+import android.text.TextUtils;
+import android.util.AttributeSet;
+import android.view.LayoutInflater;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+
+import com.bhm.sdk.bhmlibrary.R;
+import com.bhm.sdk.bhmlibrary.utils.DisplayUtil;
+
+
+/**
+ * 实现【请选择 >】这种效果
+ * 2019年7月1日 10:37:41
+ *  create by bhm
+ */
+public class TextImageView extends LinearLayout {
+
+    private String hintText = "请选择";
+    private int hintTextColor;
+    private int textColor;
+    private ImageView iv_image;
+    private TextView tv_text;
+
+    public TextImageView(Context context) {
+        super(context);
+        init(context, null);
+    }
+
+    public TextImageView(Context context, AttributeSet attrs) {
+        super(context, attrs);
+        init(context, attrs);
+    }
+
+    public TextImageView(Context context, AttributeSet attrs, int defStyleAttr) {
+        super(context, attrs, defStyleAttr);
+        init(context, attrs);
+    }
+
+    private void init(Context context, AttributeSet attrs){
+        if(null == attrs){
+            return;
+        }
+        LayoutInflater.from(context).inflate(R.layout.layout_text_image, this);
+        iv_image = (ImageView) findViewById(R.id.iv_image);
+        tv_text = (TextView) findViewById(R.id.tv_text);
+
+        TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.TextImageView);
+        hintText = typedArray.getString(R.styleable.TextImageView_hintText);
+        hintTextColor = typedArray.getColor(R.styleable.TextImageView_hintTextColor, ContextCompat.
+                getColor(context, R.color.hint));
+        textColor = typedArray.getColor(R.styleable.TextImageView_textColor, ContextCompat.
+                getColor(context, R.color.black));
+        int drawableRightResource = typedArray.getResourceId(R.styleable.TextImageView_drawableRightResource,
+                -100);
+        float drawableRightPaddingLeft = typedArray.getDimension(R.styleable.TextImageView_drawableRightPaddingLeft, 6f);
+        setDrawableRightResource(drawableRightResource);
+        setDrawableRightPaddingLeft(drawableRightPaddingLeft);
+        setHintText(hintText);
+        typedArray.recycle();
+    }
+
+    public void setDrawableRightResource(int drawableRightResource){
+        iv_image.setImageResource(drawableRightResource);
+    }
+
+    public void setDrawableRightPaddingLeft(float paddingLeft){
+        iv_image.setPadding(DisplayUtil.dp2px(getContext(), paddingLeft), 0, 0, 0);
+    }
+
+    public void setHintText(){
+        setHintText(null);
+    }
+
+    public void setHintText(String text){
+        if(TextUtils.isEmpty(text)) {
+            tv_text.setText(hintText);
+        }else{
+            tv_text.setText(text);
+        }
+        tv_text.setTextColor(hintTextColor);
+    }
+
+    public CharSequence getText(){
+        return tv_text.getText();
+    }
+
+    public void setText(String text){
+        setText(text, true);
+    }
+
+    public void setText(String text, boolean enable){
+        setEnabled(enable);
+        if(enable){
+            if(TextUtils.isEmpty(text)){
+                //可以点击，但是text为空，则显示hintText，并且字体设置hint字体颜色
+                tv_text.setText(hintText);
+                tv_text.setTextColor(hintTextColor);
+            }else{
+                tv_text.setText(text);
+                tv_text.setTextColor(textColor);
+            }
+            //可以点击，显示">"，
+            iv_image.setVisibility(VISIBLE);
+        }else{
+            //不能点击，就隐藏掉">"，并且字体设置hint字体颜色
+            tv_text.setText(com.bhm.sdk.bhmlibrary.utils.TextUtils.stringIfNull(text));
+            tv_text.setTextColor(hintTextColor);
+            iv_image.setVisibility(GONE);
+        }
+    }
+}
