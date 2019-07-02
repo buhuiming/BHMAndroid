@@ -58,6 +58,8 @@ BHMAndroid工程：一些常用的工具类，以及常用的控件，主要用�
         >添加一些工具类，如FileUtils,DateUtils。
    * 1.2.4——1.2.5</br>
         >优化<读取图片（拍照/相册)>的用法，拒绝重写onActivityResult方法。
+   * 1.2.5——1.2.6</br>
+        >增加AutoScaleTextView，固定宽度的TextView,根据显示字符长度缩小字体大小。
 
 
 
