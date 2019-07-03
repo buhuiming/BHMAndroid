@@ -26,6 +26,8 @@ public class TextImageView extends LinearLayout {
     private int textColor;
     private ImageView iv_image;
     private TextView tv_text;
+    private int drawableRightHintResource;
+    private int drawableRightResource;
 
     public TextImageView(Context context) {
         super(context);
@@ -56,21 +58,33 @@ public class TextImageView extends LinearLayout {
                 getColor(context, R.color.hint));
         textColor = typedArray.getColor(R.styleable.TextImageView_textColor, ContextCompat.
                 getColor(context, R.color.black));
-        int drawableRightResource = typedArray.getResourceId(R.styleable.TextImageView_drawableRightResource,
+        drawableRightResource = typedArray.getResourceId(R.styleable.TextImageView_drawableRightResource,
+                -100);
+        drawableRightHintResource = typedArray.getResourceId(R.styleable.TextImageView_drawableRightHintResource,
                 -100);
         float drawableRightPaddingLeft = typedArray.getDimension(R.styleable.TextImageView_drawableRightPaddingLeft, 6f);
-        setDrawableRightResource(drawableRightResource);
-        setDrawableRightPaddingLeft(drawableRightPaddingLeft);
+        setDrawableRightHintResource(drawableRightHintResource);
+        setDrawableRightPaddingLeft(drawableRightPaddingLeft, false);
         setHintText(hintText);
         typedArray.recycle();
     }
 
     public void setDrawableRightResource(int drawableRightResource){
+        this.drawableRightResource = drawableRightResource;
         iv_image.setImageResource(drawableRightResource);
     }
 
-    public void setDrawableRightPaddingLeft(float paddingLeft){
-        iv_image.setPadding(DisplayUtil.dp2px(getContext(), paddingLeft), 0, 0, 0);
+    public void setDrawableRightHintResource(int drawableRightHintResource){
+        this.drawableRightHintResource = drawableRightHintResource;
+        iv_image.setImageResource(drawableRightHintResource);
+    }
+
+    public void setDrawableRightPaddingLeft(float paddingLeft, boolean isDip){
+        if(isDip) {
+            iv_image.setPadding(DisplayUtil.dp2px(getContext(), paddingLeft), 0, 0, 0);
+        }else{
+            iv_image.setPadding((int) paddingLeft, 0, 0, 0);
+        }
     }
 
     public void setHintText(){
@@ -101,9 +115,11 @@ public class TextImageView extends LinearLayout {
                 //可以点击，但是text为空，则显示hintText，并且字体设置hint字体颜色
                 tv_text.setText(hintText);
                 tv_text.setTextColor(hintTextColor);
+                iv_image.setImageResource(drawableRightHintResource);
             }else{
                 tv_text.setText(text);
                 tv_text.setTextColor(textColor);
+                iv_image.setImageResource(drawableRightResource);
             }
             //可以点击，显示">"，
             iv_image.setVisibility(VISIBLE);

@@ -32,6 +32,7 @@
         <attr name="hintText" format="string" />
         <attr name="hintTextColor" format="color" />
         <attr name="textColor" format="color" />
+        <attr name="drawableRightHintResource" format="reference" />
         <attr name="drawableRightResource" format="reference" />
         <attr name="drawableRightPaddingLeft" format="dimension" />
     </declare-styleable>

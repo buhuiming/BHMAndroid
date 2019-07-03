@@ -37,9 +37,12 @@ public abstract class TitleBarActivity extends AppCompatActivity{
         if(null != setContentView()){
             linearLayout.addView(setContentView());
         }
+        initView();
     }
 
     public abstract void initTitleBar(TitleBar titleBar);
 
     public abstract View setContentView();
+
+    public void initView(){}
 }
