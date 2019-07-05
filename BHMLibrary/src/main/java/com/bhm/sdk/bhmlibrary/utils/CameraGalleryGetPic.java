@@ -75,6 +75,10 @@ public class CameraGalleryGetPic {
                             new ActivityResult(builder.activity).startForResult(camera, new ActivityResult.Callback() {
                                 @Override
                                 public void onActivityResult(int resultCode, Intent data) {
+                                    if(null == data){
+                                        call.result("");
+                                        return;
+                                    }
                                     if(builder.isCrop){
                                         cutImageCamera(call, getUriForFile(builder.activity, new File(temporaryPath)));
                                     }else if(null != call){
@@ -106,6 +110,10 @@ public class CameraGalleryGetPic {
                             new ActivityResult(builder.activity).startForResult(album, new ActivityResult.Callback() {
                                 @Override
                                 public void onActivityResult(int resultCode, Intent data) {
+                                    if(null == data){
+                                        call.result("");
+                                        return;
+                                    }
                                     if(builder.isCrop){
                                         cutImageGallery(call, data.getData());
                                     }else if(null != call){
