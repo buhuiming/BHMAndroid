@@ -60,7 +60,8 @@ BHMAndroid工程：一些常用的工具类，以及常用的控件，主要用�
         >优化<读取图片（拍照/相册)>的用法，拒绝重写onActivityResult方法。
    * 1.2.5——1.2.6</br>
         >增加AutoScaleTextView，固定宽度的TextView,根据显示字符长度缩小字体大小。
-
+   * 1.2.6——1.2.7</br>
+        >增加TextImageView，实现类似【请选择>】的效果; 修改<读取图片（拍照/相册)>的bug。
 
 
 ### 
