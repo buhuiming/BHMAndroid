@@ -8,13 +8,13 @@ BHMAndroid工程：一些常用的工具类，以及常用的控件，主要用�
 
 集成：
 -------
-        compile 'com.bhm.sdk.bhmlibrary:BHMLibrary:1.2.8'
+        compile 'com.bhm.sdk.bhmlibrary:BHMLibrary:1.2.9'
 
         
         <dependency>
           <groupId>com.bhm.sdk.bhmlibrary</groupId>
           <artifactId>BHMLibrary</artifactId>
-          <version>1.2.8</version>
+          <version>1.2.9</version>
           <type>pom</type>
         </dependency>
         
@@ -64,7 +64,8 @@ BHMAndroid工程：一些常用的工具类，以及常用的控件，主要用�
         >增加TextImageView，实现类似【请选择>】的效果; 修改<读取图片（拍照/相册)>的bug。
    * 1.2.7——1.2.8</br>
         >公开support包
-
+   * 1.2.8——1.2.9</br>
+        >迁移Androidx
 
 ### 
 
