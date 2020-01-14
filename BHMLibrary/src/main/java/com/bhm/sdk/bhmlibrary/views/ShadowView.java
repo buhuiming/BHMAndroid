@@ -10,9 +10,9 @@ import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.Shader;
 import android.graphics.drawable.Drawable;
-import android.support.annotation.ColorInt;
-import android.support.annotation.Nullable;
-import android.support.v4.view.ViewCompat;
+import androidx.annotation.ColorInt;
+import androidx.annotation.Nullable;
+import androidx.core.view.ViewCompat;
 import android.view.View;
 
 /** 圆角，阴影，颜色的view

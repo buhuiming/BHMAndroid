@@ -2,8 +2,6 @@ package com.bhm.sdk.demo.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.webkit.WebView;
 import android.widget.Toast;
@@ -12,6 +10,9 @@ import com.bhm.sdk.bhmlibrary.interfaces.WebViewCallBack;
 import com.bhm.sdk.bhmlibrary.views.BaseWebView;
 import com.bhm.sdk.bhmlibrary.views.TitleBar;
 import com.bhm.sdk.demo.R;
+
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 
 /**
  * Created by bhm on 2018/5/7.

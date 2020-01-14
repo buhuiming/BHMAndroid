@@ -2,7 +2,6 @@ package com.bhm.sdk.bhmlibrary.views;
 
 import android.content.Context;
 import android.content.res.TypedArray;
-import android.support.v4.content.ContextCompat;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
@@ -12,6 +11,8 @@ import android.widget.TextView;
 
 import com.bhm.sdk.bhmlibrary.R;
 import com.bhm.sdk.bhmlibrary.utils.DisplayUtil;
+
+import androidx.core.content.ContextCompat;
 
 
 /**
@@ -63,10 +64,16 @@ public class TextImageView extends LinearLayout {
         drawableRightHintResource = typedArray.getResourceId(R.styleable.TextImageView_drawableRightHintResource,
                 -100);
         float drawableRightPaddingLeft = typedArray.getDimension(R.styleable.TextImageView_drawableRightPaddingLeft, 6f);
+        int maxLines = typedArray.getInt(R.styleable.TextImageView_maxLines, 1);
+        setMaxLines(maxLines);
         setDrawableRightHintResource(drawableRightHintResource);
         setDrawableRightPaddingLeft(drawableRightPaddingLeft, false);
         setHintText(hintText);
         typedArray.recycle();
+    }
+
+    public void setMaxLines(int lines){
+        tv_text.setMaxLines(lines);
     }
 
     public void setDrawableRightResource(int drawableRightResource){
@@ -101,6 +108,9 @@ public class TextImageView extends LinearLayout {
     }
 
     public CharSequence getText(){
+        if(hintText.equals(tv_text.getText().toString())) {
+            return tv_text.getText().toString().replace(hintText, "");
+        }
         return tv_text.getText();
     }
 

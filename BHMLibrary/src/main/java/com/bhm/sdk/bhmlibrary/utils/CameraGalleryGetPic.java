@@ -12,8 +12,6 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Environment;
 import android.provider.MediaStore;
-import android.support.annotation.NonNull;
-import android.support.v4.content.FileProvider;
 import android.text.TextUtils;
 import android.widget.Toast;
 
@@ -23,6 +21,8 @@ import com.tbruyelle.rxpermissions2.RxPermissions;
 
 import java.io.File;
 
+import androidx.annotation.NonNull;
+import androidx.core.content.FileProvider;
 import io.reactivex.functions.Consumer;
 
 import static android.content.Intent.FLAG_GRANT_READ_URI_PERMISSION;
@@ -75,7 +75,7 @@ public class CameraGalleryGetPic {
                             new ActivityResult(builder.activity).startForResult(camera, new ActivityResult.Callback() {
                                 @Override
                                 public void onActivityResult(int resultCode, Intent data) {
-                                    if(null == data){
+                                    if(!new File(temporaryPath).exists()){
                                         call.result("");
                                         return;
                                     }

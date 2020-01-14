@@ -1,6 +1,6 @@
 package com.bhm.sdk.demo.adapter;
 
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 import android.widget.TextView;
 
 import com.bhm.sdk.demo.R;

@@ -2,8 +2,8 @@ apply plugin: 'com.android.library'
 apply plugin: 'com.novoda.bintray-release'
 
 android {
-    compileSdkVersion 25
-    buildToolsVersion "26.0.2"
+    compileSdkVersion 29
+    buildToolsVersion "28.0.3"
 
     lintOptions {
         abortOnError false
@@ -11,9 +11,9 @@ android {
 
     defaultConfig {
         minSdkVersion 16
-        targetSdkVersion 25
-        versionCode 127
-        versionName "1.2.7"
+        targetSdkVersion 29
+        versionCode 129
+        versionName "1.2.9"
     }
     buildTypes {
         release {
@@ -21,18 +21,22 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
 }
 
 dependencies {
-    provided 'com.android.support:appcompat-v7:25.3.1'
+    api 'androidx.appcompat:appcompat:1.1.0'
     //permissions
-    compile 'com.tbruyelle.rxpermissions2:rxpermissions:0.9.4@aar'
-    provided 'io.reactivex.rxjava2:rxjava:2.1.8'
-    provided 'com.bhm.sdk.bhmlibrary:ActivityResult:1.0.1'
+    api 'com.tbruyelle.rxpermissions2:rxpermissions:0.9.4@aar'
+    compileOnly 'io.reactivex.rxjava2:rxjava:2.1.16'
+    compileOnly 'com.bhm.sdk.bhmlibrary:ActivityResult:1.0.4'
 }
 ext {
     PUBLISH_GROUP_ID = 'com.bhm.sdk.bhmlibrary'
     PUBLISH_ARTIFACT_ID = 'BHMLibrary'
-    PUBLISH_VERSION = '1.2.7'
+    PUBLISH_VERSION = '1.2.9'
 }
 apply from: 'https://raw.githubusercontent.com/blundell/release-android-library/master/android-release-aar.gradle'

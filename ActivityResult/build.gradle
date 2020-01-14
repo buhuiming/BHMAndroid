@@ -2,14 +2,14 @@ apply plugin: 'com.android.library'
 apply plugin: 'com.novoda.bintray-release'
 
 android {
-    compileSdkVersion 25
-    buildToolsVersion "26.0.2"
+    compileSdkVersion 29
+    buildToolsVersion "28.0.3"
 
     defaultConfig {
-        minSdkVersion 11
-        targetSdkVersion 25
-        versionCode 103
-        versionName "1.0.3"
+        minSdkVersion 14
+        targetSdkVersion 29
+        versionCode 104
+        versionName "1.0.4"
 
     }
     buildTypes {
@@ -18,15 +18,24 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    lintOptions {
+        abortOnError false
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile 'io.reactivex.rxjava2:rxjava:2.1.8'
+    api fileTree(dir: 'libs', include: ['*.jar'])
+    api 'io.reactivex.rxjava2:rxjava:2.1.16'
 }
 ext {
     PUBLISH_GROUP_ID = 'com.bhm.sdk.bhmlibrary'
     PUBLISH_ARTIFACT_ID = 'ActivityResult'
-    PUBLISH_VERSION = '1.0.3'
+    PUBLISH_VERSION = '1.0.4'
 }
 apply from: 'https://raw.githubusercontent.com/blundell/release-android-library/master/android-release-aar.gradle'

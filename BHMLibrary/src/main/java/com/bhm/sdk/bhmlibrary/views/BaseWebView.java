@@ -8,7 +8,6 @@ import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.net.http.SslError;
 import android.os.Build;
-import android.support.annotation.DrawableRes;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -34,6 +33,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.URLDecoder;
 
+import androidx.annotation.DrawableRes;
+
 
 /**
  * Created by bhm on 2018/6/14.
@@ -48,9 +49,22 @@ public class BaseWebView extends WebView {
     private String errorPagePath = "";
     private String baseUrl = "";
 
+    public BaseWebView(Context context) {
+        super(context);
+    }
+
     public BaseWebView(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
+
+    public BaseWebView(Context context, AttributeSet attrs, int defStyleAttr) {
+        super(context, attrs, defStyleAttr);
+    }
+
+    public BaseWebView(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+        super(context, attrs, defStyleAttr, defStyleRes);
+    }
+
 
     public void setProgressBarDrawable(@DrawableRes int drawableRes){
         this.drawableRes = drawableRes;
@@ -79,9 +93,7 @@ public class BaseWebView extends WebView {
             addView(progressbar);
         }
         WebSettings wvSettings = getSettings();
-        if (Build.VERSION.SDK_INT > 9) {
-            this.setOverScrollMode(View.OVER_SCROLL_NEVER);
-        }
+        this.setOverScrollMode(View.OVER_SCROLL_NEVER);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
 
             wvSettings.setAllowFileAccessFromFileURLs(true);
@@ -138,8 +150,10 @@ public class BaseWebView extends WebView {
                     String urlMethod = urlTemp.substring(0, urlTemp.indexOf(":", 0) + 1).trim();
                     urlMethod = urlMethod.toUpperCase();
                     if ("BHMERROR:".equals(urlMethod)){
-                        loadUrl(baseUrl);
-                        return true;
+                        if(Build.VERSION.SDK_INT < 26){
+                            loadUrl(baseUrl);
+                            return true;
+                        }
                     }
                 }catch (Exception e){
 
@@ -147,10 +161,14 @@ public class BaseWebView extends WebView {
                 HitTestResult hitTestResult = view.getHitTestResult();
                 //hitTestResult==null解决重定向问题
                 if (!TextUtils.isEmpty(url) && hitTestResult == null) {
-                    view.loadUrl(url);
-                    return true;
+                    //低于android 8.0的需要手动loadURL，大于等于android 8.0直接返回false，否则无法重定向
+                    if(Build.VERSION.SDK_INT < 26) {
+                        view.loadUrl(url);
+                        return true;
+                    }
                 }
-                return callBack.shouldOverrideUrlLoading(view, url);
+                callBack.shouldOverrideUrlLoading(view, url);
+                return false;
             };
             @Override
             public void onPageFinished(WebView view, String url) {

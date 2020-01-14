@@ -1,6 +1,7 @@
 package com.bhm.sdk.demo;
 
 import android.app.Application;
+import android.content.Context;
 
 import com.bhm.sdk.bhmlibrary.crash.CrashManager;
 import com.bhm.sdk.demo.utils.CrashDeal;
@@ -23,5 +24,11 @@ public class BaseApplication extends Application {
 
     public static BaseApplication getApplication() {
         return application;
+    }
+
+    @Override
+    protected void attachBaseContext(Context base) {
+        super.attachBaseContext(base);
+        androidx.multidex.MultiDex.install(this);
     }
 }
