@@ -6,6 +6,8 @@ BHMAndroid工程：一些常用的工具类，以及常用的控件，主要用�
 =====
 ---------
 
+#### v1.2.9为androidx版本，如果不用androidx就使用v1.2.8，但是后续有更新将只支持androidx的版本
+
 集成：
 -------
         compile 'com.bhm.sdk.bhmlibrary:BHMLibrary:1.2.9'
