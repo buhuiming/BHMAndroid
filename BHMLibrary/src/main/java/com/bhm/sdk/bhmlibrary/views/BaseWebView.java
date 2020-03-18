@@ -4,6 +4,7 @@ package com.bhm.sdk.bhmlibrary.views;
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Context;
+import android.content.res.Configuration;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.net.http.SslError;
@@ -49,20 +50,45 @@ public class BaseWebView extends WebView {
     private String errorPagePath = "";
     private String baseUrl = "";
 
+    //    21(5.0)、22(5.1)系统上，解决自定义webView闪退
+//    方法1：getFixedContext
+
+//    方法2：
+//    检查build.gradle中是否引用
+//    androidx.appcompat:appcompat:1.1.0
+//    降级到androidx.appcompat:appcompat:1.0.2
+//    androidx.appcompat:appcompat:1.0.0
+//    或者升级到
+//    androidx.appcompat:appcompat:1.1.0-alpha04
+//    androidx.appcompat:appcompat:1.2.0-alpha02可解决
+//
+//    改版本号，记得这几个要同步：
+//    implementation 'androidx.appcompat:appcompat:1.0.0'
+//    implementation 'com.google.android.material:material:1.0.0'
+//    implementation 'androidx.recyclerview:recyclerview:1.0.0'
+//    implementation "androidx.cardview:cardview:1.0.0"
+
     public BaseWebView(Context context) {
-        super(context);
+        super(getFixedContext(context));
     }
 
     public BaseWebView(Context context, AttributeSet attrs) {
-        super(context, attrs);
+        super(getFixedContext(context), attrs);
     }
 
     public BaseWebView(Context context, AttributeSet attrs, int defStyleAttr) {
-        super(context, attrs, defStyleAttr);
+        super(getFixedContext(context), attrs, defStyleAttr);
     }
 
     public BaseWebView(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
-        super(context, attrs, defStyleAttr, defStyleRes);
+        super(getFixedContext(context), attrs, defStyleAttr, defStyleRes);
+    }
+
+    private static Context getFixedContext(Context context){
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP && Build.VERSION.SDK_INT <= Build.VERSION_CODES.LOLLIPOP_MR1) {
+            return context.createConfigurationContext(new Configuration());
+        }
+        return context;
     }
 
 
