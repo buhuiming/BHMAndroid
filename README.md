@@ -6,17 +6,12 @@ BHMAndroid工程：一些常用的工具类，以及常用的控件，主要用�
 =====
 ---------
 
+#### v1.2.9及以上为androidx版本，如果不用androidx就使用v1.2.8，但是后续有更新将只支持androidx的版本
+
 集成：
 -------
-        compile 'com.bhm.sdk.bhmlibrary:BHMLibrary:1.2.9'
+        compile 'com.bhm.sdk.bhmlibrary:BHMLibrary:1.3.0'
 
-        
-        <dependency>
-          <groupId>com.bhm.sdk.bhmlibrary</groupId>
-          <artifactId>BHMLibrary</artifactId>
-          <version>1.2.9</version>
-          <type>pom</type>
-        </dependency>
         
 #### 目前库包含了一些项目中常用的模块，后续会慢慢的添加完善。
 
@@ -66,6 +61,8 @@ BHMAndroid工程：一些常用的工具类，以及常用的控件，主要用�
         >公开support包
    * 1.2.8——1.2.9</br>
         >迁移Androidx
+   * 1.2.9——1.3.0</br>
+        >解决5.0、5.1系统webview闪退
 
 ### 
 
