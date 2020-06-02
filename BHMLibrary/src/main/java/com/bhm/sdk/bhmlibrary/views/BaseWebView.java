@@ -193,8 +193,7 @@ public class BaseWebView extends WebView {
                         return true;
                     }
                 }
-                callBack.shouldOverrideUrlLoading(view, url);
-                return false;
+                return callBack.shouldOverrideUrlLoading(view, url);
             };
             @Override
             public void onPageFinished(WebView view, String url) {

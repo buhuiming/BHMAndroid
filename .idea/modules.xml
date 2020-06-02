@@ -2,10 +2,10 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/ActivityResult/ActivityResult.iml" filepath="$PROJECT_DIR$/ActivityResult/ActivityResult.iml" />
-      <module fileurl="file://$PROJECT_DIR$/BHMAndroid.iml" filepath="$PROJECT_DIR$/BHMAndroid.iml" />
-      <module fileurl="file://$PROJECT_DIR$/BHMLibrary/BHMLibrary.iml" filepath="$PROJECT_DIR$/BHMLibrary/BHMLibrary.iml" />
-      <module fileurl="file://$PROJECT_DIR$/demo/demo.iml" filepath="$PROJECT_DIR$/demo/demo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ActivityResult/ActivityResult.iml" filepath="$PROJECT_DIR$/ActivityResult/ActivityResult.iml" group="BHMAndroid/ActivityResult" />
+      <module fileurl="file://$PROJECT_DIR$/BHMAndroid.iml" filepath="$PROJECT_DIR$/BHMAndroid.iml" group="BHMAndroid" />
+      <module fileurl="file://$PROJECT_DIR$/BHMLibrary/BHMLibrary.iml" filepath="$PROJECT_DIR$/BHMLibrary/BHMLibrary.iml" group="BHMAndroid/BHMLibrary" />
+      <module fileurl="file://$PROJECT_DIR$/demo/demo.iml" filepath="$PROJECT_DIR$/demo/demo.iml" group="BHMAndroid/demo" />
     </modules>
   </component>
 </project>
