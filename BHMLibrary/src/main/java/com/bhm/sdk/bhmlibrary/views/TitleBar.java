@@ -438,6 +438,28 @@ public class TitleBar extends RelativeLayout {
 		}
 		return this;
 	}
+	
+	
+	/** TitleBar左边和右边布局宽度不一样导致title不居中，设置左边和右边都宽度一样
+     * @param titleBar 
+     */
+    public void setTitleViewTitleInCenter(){
+        ll_title_bar_left.post(new Runnable() {
+            @Override
+            public void run() {
+                RelativeLayout.LayoutParams paramsLeft = (RelativeLayout.LayoutParams) ll_title_bar_left.getLayoutParams();
+                RelativeLayout.LayoutParams paramsRight = (RelativeLayout.LayoutParams) ll_title_bar_right.getLayoutParams();
+                if(ll_title_bar_left.getWidth() > ll_title_bar_right.getWidth()){
+                    paramsRight.width = ll_title_bar_left.getWidth();
+                    ll_title_bar_right.setLayoutParams(paramsRight);
+                }else if(ll_title_bar_left.getWidth() < ll_title_bar_right.getWidth()){
+                    paramsLeft.width = ll_title_bar_right.getWidth();
+                    ll_title_bar_left.setLayoutParams(paramsLeft);
+                }
+            }
+        });
+    }
+	
 
 	public LinearLayout getLeftView(){
 		return ll_title_bar_left;
