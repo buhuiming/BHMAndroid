@@ -406,6 +406,7 @@ public class TitleBar extends RelativeLayout {
 		if(res == -100){
 			img_title_bar_left.setVisibility(GONE);
 		}else {
+			img_title_bar_left.setVisibility(View.VISIBLE);
 			img_title_bar_left.setBackgroundResource(res);
 		}
 		return this;
@@ -432,6 +433,7 @@ public class TitleBar extends RelativeLayout {
 		if(res == -100){
 			img_title_bar_right.setVisibility(GONE);
 		}else {
+			img_title_bar_right.setVisibility(View.VISIBLE);
 			img_title_bar_right.setBackgroundResource(res);
 		}
 		return this;
