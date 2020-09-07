@@ -10,7 +10,7 @@ BHMAndroid工程：一些常用的工具类，以及常用的控件，主要用�
 
 集成：
 -------
-        compile 'com.bhm.sdk.bhmlibrary:BHMLibrary:1.3.0'
+        compile 'com.bhm.sdk.bhmlibrary:BHMLibrary:1.3.3'
 
         
 #### 目前库包含了一些项目中常用的模块，后续会慢慢的添加完善。
