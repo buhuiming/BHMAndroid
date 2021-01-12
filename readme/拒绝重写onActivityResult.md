@@ -6,7 +6,7 @@
 #### v1.0.4为androidx版本，如果不用androidx就使用v1.0.3，但是后续有更新将只支持androidx的版本
 
 ### 引用
-   已合并在BHM
+   已合并在BHMLibrary
 
 ### 用法
 
