@@ -29,6 +29,6 @@ public class BaseApplication extends Application {
     @Override
     protected void attachBaseContext(Context base) {
         super.attachBaseContext(base);
-        androidx.multidex.MultiDex.install(this);
+//        androidx.multidex.MultiDex.install(this);
     }
 }

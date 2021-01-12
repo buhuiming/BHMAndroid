@@ -5,10 +5,10 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
+import com.bhm.sdk.bhmlibrary.result.ActivityResult;
+import com.bhm.sdk.bhmlibrary.result.ResultData;
 import com.bhm.sdk.demo.R;
 import com.bhm.sdk.demo.adapter.MainUIAdapter;
-import com.bhm.sdk.onresult.ActivityResult;
-import com.bhm.sdk.onresult.ResultData;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 
 import java.util.ArrayList;

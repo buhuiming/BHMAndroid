@@ -1,4 +1,4 @@
-package com.bhm.sdk.onresult;
+package com.bhm.sdk.bhmlibrary.result;
 
 import android.content.Intent;
 

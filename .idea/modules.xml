@@ -2,14 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/ActivityResult/ActivityResult.iml" filepath="$PROJECT_DIR$/ActivityResult/ActivityResult.iml" group="BHMAndroid/ActivityResult" />
-      <module fileurl="file://$PROJECT_DIR$/BHMAndroid.iml" filepath="$PROJECT_DIR$/BHMAndroid.iml" group="BHMAndroid" />
-      <module fileurl="file://$PROJECT_DIR$/ActivityResult/BHMAndroid-ActivityResult.iml" filepath="$PROJECT_DIR$/ActivityResult/BHMAndroid-ActivityResult.iml" group="BHMAndroid/ActivityResult" />
-      <module fileurl="file://$PROJECT_DIR$/BHMLibrary/BHMAndroid-BHMLibrary.iml" filepath="$PROJECT_DIR$/BHMLibrary/BHMAndroid-BHMLibrary.iml" group="BHMAndroid/BHMLibrary" />
-      <module fileurl="file://$PROJECT_DIR$/demo/BHMAndroid-demo.iml" filepath="$PROJECT_DIR$/demo/BHMAndroid-demo.iml" group="BHMAndroid/demo" />
-      <module fileurl="file://$PROJECT_DIR$/BHMLibrary/BHMLibrary.iml" filepath="$PROJECT_DIR$/BHMLibrary/BHMLibrary.iml" group="BHMAndroid/BHMLibrary" />
-      <module fileurl="file://$PROJECT_DIR$/demo/demo.iml" filepath="$PROJECT_DIR$/demo/demo.iml" group="BHMAndroid/demo" />
-      <module fileurl="file://$PROJECT_DIR$/my_sdk-BHMAndroid.iml" filepath="$PROJECT_DIR$/my_sdk-BHMAndroid.iml" group="BHMAndroid" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/BHMAndroid.iml" filepath="$PROJECT_DIR$/.idea/BHMAndroid.iml" group="BHMAndroid" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/BHMLibrary/BHMLibrary.iml" filepath="$PROJECT_DIR$/.idea/modules/BHMLibrary/BHMLibrary.iml" group="BHMAndroid/BHMLibrary" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/demo/demo.iml" filepath="$PROJECT_DIR$/.idea/modules/demo/demo.iml" group="BHMAndroid/demo" />
     </modules>
   </component>
 </project>
