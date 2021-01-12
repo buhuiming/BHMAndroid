@@ -6,15 +6,7 @@
 #### v1.0.4为androidx版本，如果不用androidx就使用v1.0.3，但是后续有更新将只支持androidx的版本
 
 ### 引用
-        compile 'com.bhm.sdk.bhmlibrary:ActivityResult:1.0.4'
-        compile 'io.reactivex.rxjava2:rxjava:2.1.16'
-        
-        <dependency>
-          <groupId>com.bhm.sdk.bhmlibrary</groupId>
-          <artifactId>ActivityResult</artifactId>
-          <version>1.0.4</version>
-          <type>pom</type>
-        </dependency>
+   已合并在BHM
 
 ### 用法
 
