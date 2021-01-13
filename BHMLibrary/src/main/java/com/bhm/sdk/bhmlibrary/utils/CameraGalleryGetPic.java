@@ -1,7 +1,10 @@
 package com.bhm.sdk.bhmlibrary.utils;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.content.ContentResolver;
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ApplicationInfo;
@@ -16,7 +19,7 @@ import android.text.TextUtils;
 import android.widget.Toast;
 
 import com.bhm.sdk.bhmlibrary.interfaces.PictureCall;
-import com.bhm.sdk.onresult.ActivityResult;
+import com.bhm.sdk.bhmlibrary.result.ActivityResult;
 import com.tbruyelle.rxpermissions2.RxPermissions;
 
 import java.io.File;
@@ -35,7 +38,6 @@ import static android.content.Intent.FLAG_GRANT_WRITE_URI_PERMISSION;
 
 public class CameraGalleryGetPic {
 
-    public static final String localFileName = "CGGetPic";
     public static final String FORMAT_JPEG = Bitmap.CompressFormat.JPEG.toString();
     public static final String FORMAT_PNG = Bitmap.CompressFormat.PNG.toString();
     public static final String FORMAT_WEBP = Bitmap.CompressFormat.WEBP.toString();
@@ -44,11 +46,7 @@ public class CameraGalleryGetPic {
 
     public CameraGalleryGetPic(@NonNull Builder builder){
         this.builder = builder;
-        String dir = getSDCardPath() + localFileName + "/";
-        if (!TextUtils.isEmpty(builder.picPath)) {
-            dir = builder.picPath;
-        }
-        File file = new File(dir);
+        File file = new File(builder.picPath);
         setCacheFile(file);
     }
 
@@ -58,6 +56,7 @@ public class CameraGalleryGetPic {
 
     /** get picture from camera
      */
+    @SuppressLint("CheckResult")
     public void cameraGetPic(final PictureCall call){
         RxPermissions permissions = new RxPermissions(builder.activity);
         permissions.request(Manifest.permission.CAMERA)
@@ -93,6 +92,7 @@ public class CameraGalleryGetPic {
 
     /** get picture from gallery
      */
+    @SuppressLint("CheckResult")
     public void galleryGetPic(final PictureCall call) {
         RxPermissions permissions = new RxPermissions(builder.activity);
         permissions.request(Manifest.permission.WRITE_EXTERNAL_STORAGE,
@@ -206,12 +206,9 @@ public class CameraGalleryGetPic {
     }
 
     private void initPicPath() {
-        String dir = getSDCardPath() + localFileName + "/";
+        String dir =  builder.picPath;
         String filename = System.currentTimeMillis() + "." +
                 ((TextUtils.isEmpty(builder.format) ? FORMAT_PNG: builder.format)).toLowerCase();
-        if (!TextUtils.isEmpty(builder.picPath)) {
-            dir = builder.picPath;
-        }
         File dirs = new File(dir);
         if (!dirs.exists()) {
             dirs.mkdirs();
@@ -230,21 +227,13 @@ public class CameraGalleryGetPic {
                 file.delete();
                 return;
             }else if(childFiles.length >= 50){//超过50张 把所有图片都删除
-                for (int i = 0; i < childFiles.length; i++) {
-                    setCacheFile(childFiles[i]);
+                for (File childFile : childFiles) {
+                    setCacheFile(childFile);
                 }
                 file.delete();
             }
         }
         file.mkdirs();
-    }
-
-    /**
-     * 获取SD卡路径
-     */
-    private String getSDCardPath() {
-        return Environment.getExternalStorageDirectory().getAbsolutePath()
-                + File.separator;
     }
 
     /** 相册裁剪
@@ -267,7 +256,19 @@ public class CameraGalleryGetPic {
         intent.putExtra("outputY", builder.outputY == 0 ? 300 : builder.outputY);
         intent.putExtra("return-data", false);
         intent.putExtra("scale", true);
-        intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(f));
+        Uri newUri;
+        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.Q) {
+            //android 11以上，将文件创建在相册，因为相册不能调用app的私有地址资源
+            ContentResolver contentResolver = builder.activity.getContentResolver();
+            ContentValues values = new ContentValues();
+            values.put(MediaStore.MediaColumns.DISPLAY_NAME, String.valueOf(System.currentTimeMillis()));
+            values.put(MediaStore.MediaColumns.MIME_TYPE, "image/jpeg");
+            values.put(MediaStore.MediaColumns.RELATIVE_PATH, Environment.DIRECTORY_DCIM);
+            newUri = contentResolver.insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values);
+        }else {
+            newUri = Uri.fromFile(f);
+        }
+        intent.putExtra(MediaStore.EXTRA_OUTPUT, newUri);
         intent.putExtra("outputFormat", TextUtils.isEmpty(builder.format)
                 ? FORMAT_JPEG : builder.format);
         intent.putExtra("noFaceDetection", true);
@@ -275,7 +276,21 @@ public class CameraGalleryGetPic {
             @Override
             public void onActivityResult(int resultCode, Intent data) {
                 if(null != call){
-                    call.result(temporaryPath);
+                    if (Build.VERSION.SDK_INT > Build.VERSION_CODES.Q) {
+                        try {
+                            String[] filePathColumn = {MediaStore.Audio.Media.DATA};
+                            Cursor cursor = builder.activity.getContentResolver().query(
+                                    newUri, filePathColumn, null, null, null);
+                            cursor.moveToFirst();
+                            String photoPath = cursor.getString(cursor.getColumnIndex(filePathColumn[0]));
+                            cursor.close();
+                            call.result(photoPath);
+                        }catch (Exception e){
+
+                        }
+                    }else {
+                        call.result(temporaryPath);
+                    }
                 }
             }
         });

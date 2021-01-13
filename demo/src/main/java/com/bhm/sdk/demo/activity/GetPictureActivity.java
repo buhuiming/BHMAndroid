@@ -1,7 +1,5 @@
 package com.bhm.sdk.demo.activity;
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.Environment;
 import android.view.View;
@@ -12,6 +10,7 @@ import com.bhm.sdk.bhmlibrary.interfaces.PictureCall;
 import com.bhm.sdk.bhmlibrary.utils.CameraGalleryGetPic;
 import com.bhm.sdk.bhmlibrary.views.TitleBar;
 import com.bhm.sdk.demo.R;
+import com.bumptech.glide.Glide;
 
 import java.io.File;
 
@@ -50,8 +49,11 @@ public class GetPictureActivity extends AppCompatActivity {
             }
         });
 
-        String path = Environment.getExternalStorageDirectory().getAbsolutePath()
-                + File.separator + "CPictureActivity" + "/";
+//        String path = Environment.getExternalStorageDirectory().getAbsolutePath()
+//                + File.separator + "CPictureActivity" + "/";
+        String path = getExternalFilesDir(
+                Environment.DIRECTORY_DOWNLOADS).getAbsolutePath()
+                + File.separator;
 
         getPic = CameraGalleryGetPic.newBuilder(this)
                 .setPicPath(path)
@@ -78,10 +80,7 @@ public class GetPictureActivity extends AppCompatActivity {
         return new PictureCall() {
             @Override
             public void result(String path) {
-                Bitmap bitmap = BitmapFactory.decodeFile(path);
-                if(null != bitmap){
-                    imageView.setImageBitmap(bitmap);
-                }
+                Glide.with(GetPictureActivity.this).load(path).into(imageView);
             }
         };
     }
