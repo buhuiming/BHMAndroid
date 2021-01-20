@@ -3,7 +3,7 @@ apply plugin: 'com.jakewharton.butterknife'
 
 android {
     compileSdkVersion 29
-    buildToolsVersion "28.0.3"
+    buildToolsVersion "29.0.3"
 
     lintOptions {
         abortOnError false
@@ -15,7 +15,6 @@ android {
         targetSdkVersion 29
         versionCode 1
         versionName "1.0"
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         javaCompileOptions {
             annotationProcessorOptions {
                 includeCompileClasspath = true
@@ -37,10 +36,6 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    androidTestCompile('androidx.test.espresso:espresso-core:3.1.0', {
-        exclude group: 'com.android.support', module: 'support-annotations'
-    })
-    testImplementation 'junit:junit:4.12'
     implementation project(path: ':BHMLibrary')
     implementation 'androidx.recyclerview:recyclerview:1.1.0'
     implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.34'

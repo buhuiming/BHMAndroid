@@ -100,7 +100,7 @@ public class TitleBar extends RelativeLayout {
 		float leftTextViewPaddingLeft = typedArray.getDimension(R.styleable.TitleBar_leftTextViewPaddingLeft, 4f);
 		float rightTextViewPaddingRight = typedArray.getDimension(R.styleable.TitleBar_rightTextViewPaddingRight, 4f);
 
-		int titleTextStyle = typedArray.getInt(R.styleable.TitleBar_titleTextStyle, 0);
+		int titleTextStyle = typedArray.getInt(R.styleable.TitleBar_titleBarTextStyle, 0);
 		int leftTextStyle = typedArray.getInt(R.styleable.TitleBar_leftTextStyle, 0);
 		int rightTextStyle = typedArray.getInt(R.styleable.TitleBar_rightTextStyle, 0);
 
