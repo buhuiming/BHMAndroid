@@ -1,5 +1,6 @@
 package com.bhm.sdk.demo.activity;
 
+import android.graphics.Typeface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Toast;
@@ -45,7 +46,7 @@ public class TitleBarExtendsBaseActivity extends TitleBarActivity {
         titleBar.setRightTextViewPaddingRight(2, true);
         titleBar.setLeftViewMarginLeft(15, true);
         titleBar.setRightViewMarginRight(15, true);
-
+        titleBar.setTitleTextStyle(Typeface.BOLD);
 //        titleBar.setLeftOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View v) {
@@ -78,6 +79,8 @@ public class TitleBarExtendsBaseActivity extends TitleBarActivity {
     public void initView() {
         super.initView();
         tv_check = (TextImageView) rootView.findViewById(R.id.tv_check);
+        tv_check.setDrawableSize(20f, true);
+        tv_check.setTextSize(18, Typeface.ITALIC);
         tv_check.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

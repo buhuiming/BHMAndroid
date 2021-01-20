@@ -22,6 +22,21 @@
         <attr name="rightViewMarginRight" format="dimension" />
         <attr name="leftTextViewPaddingLeft" format="dimension" />
         <attr name="rightTextViewPaddingRight" format="dimension" />
+        <attr name="titleTextStyle" format="integer" >
+            <flag name="normal" value="0" />
+            <flag name="bold" value="1" />
+            <flag name="italic" value="2" />
+        </attr>
+        <attr name="leftTextStyle" format="integer" >
+            <flag name="normal" value="0" />
+            <flag name="bold" value="1" />
+            <flag name="italic" value="2" />
+        </attr>
+        <attr name="rightTextStyle" format="integer" >
+            <flag name="normal" value="0" />
+            <flag name="bold" value="1" />
+            <flag name="italic" value="2" />
+        </attr>
     </declare-styleable>
 
     <declare-styleable name="AutoScaleTextView">
@@ -36,5 +51,12 @@
         <attr name="drawableRightHintResource" format="reference" />
         <attr name="drawableRightResource" format="reference" />
         <attr name="drawableRightPaddingLeft" format="dimension" />
+        <attr name="drawableSize" format="dimension" />
+        <attr name="textSize" format="dimension"/>
+        <attr name="textStyle" format="integer" >
+            <flag name="normal" value="0" />
+            <flag name="bold" value="1" />
+            <flag name="italic" value="2" />
+        </attr>
     </declare-styleable>
 </resources>

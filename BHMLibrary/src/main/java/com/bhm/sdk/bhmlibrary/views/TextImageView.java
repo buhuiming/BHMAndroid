@@ -2,9 +2,12 @@ package com.bhm.sdk.bhmlibrary.views;
 
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.graphics.Typeface;
 import android.text.TextUtils;
 import android.util.AttributeSet;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -63,12 +66,18 @@ public class TextImageView extends LinearLayout {
                 -100);
         drawableRightHintResource = typedArray.getResourceId(R.styleable.TextImageView_drawableRightHintResource,
                 -100);
+        float textSize = typedArray.getDimensionPixelSize(R.styleable.TextImageView_textSize, 42);
         float drawableRightPaddingLeft = typedArray.getDimension(R.styleable.TextImageView_drawableRightPaddingLeft, 6f);
+        float drawableSize = typedArray.getDimension(R.styleable.TextImageView_drawableSize, 14f);
         int maxLines = typedArray.getInt(R.styleable.TextImageView_maxLines, 1);
+        int textStyle = typedArray.getInt(R.styleable.TextImageView_textStyle, 0);
         setMaxLines(maxLines);
         setDrawableRightHintResource(drawableRightHintResource);
         setDrawableRightPaddingLeft(drawableRightPaddingLeft, false);
+        setDrawableSize(drawableSize, false);
         setHintText(hintText);
+        tv_text.setTextSize(TypedValue.COMPLEX_UNIT_PX, textSize);
+        tv_text.setTypeface(Typeface.defaultFromStyle(textStyle));
         typedArray.recycle();
     }
 
@@ -94,6 +103,18 @@ public class TextImageView extends LinearLayout {
         }
     }
 
+    public void setDrawableSize(float drawableSize, boolean isDip){
+        ViewGroup.LayoutParams layoutParams = iv_image.getLayoutParams();
+        if(isDip) {
+            layoutParams.width = DisplayUtil.dp2px(getContext(), drawableSize);
+            layoutParams.height = DisplayUtil.dp2px(getContext(), drawableSize);
+        }else{
+            layoutParams.width = (int) drawableSize;
+            layoutParams.height = (int) drawableSize;
+        }
+        iv_image.setLayoutParams(layoutParams);
+    }
+
     public void setHintText(){
         setHintText(null);
     }
@@ -105,6 +126,15 @@ public class TextImageView extends LinearLayout {
             tv_text.setText(text);
         }
         tv_text.setTextColor(hintTextColor);
+    }
+
+    public void setTextSize(float textSize){
+        setTextSize(textSize, Typeface.NORMAL);
+    }
+
+    public void setTextSize(float textSize, int typeface){
+        tv_text.setTextSize(textSize);
+        tv_text.setTypeface(Typeface.defaultFromStyle(typeface));
     }
 
     public CharSequence getText(){

@@ -30,7 +30,6 @@ import android.renderscript.Allocation;
 import android.renderscript.Element;
 import android.renderscript.RenderScript;
 import android.renderscript.ScriptIntrinsicBlur;
-import androidx.annotation.NonNull;
 import android.util.Log;
 import android.widget.ImageView;
 
@@ -45,6 +44,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+
+import androidx.annotation.NonNull;
 
 /**
  * Created by bhm on 2018/8/30.
@@ -210,6 +211,7 @@ public class BitmapUtils {
      * @param filePath 文件路径
      * @return bitmap
      */
+    @Deprecated
     public static Bitmap getBitmap(String filePath) {
         if (TextUtils.isNullString(filePath)) return null;
         return BitmapFactory.decodeFile(filePath);
@@ -223,6 +225,7 @@ public class BitmapUtils {
      * @param maxHeight 最大高度
      * @return bitmap
      */
+    @Deprecated
     public static Bitmap getBitmap(String filePath, int maxWidth, int maxHeight) {
         if (TextUtils.isNullString(filePath)) return null;
         BitmapFactory.Options options = new BitmapFactory.Options();

@@ -3,9 +3,8 @@ package com.bhm.sdk.bhmlibrary.views;
 import android.app.Activity;
 import android.content.Context;
 import android.content.res.TypedArray;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.core.content.ContextCompat;
+import android.graphics.Typeface;
+import android.os.Build;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.util.TypedValue;
@@ -21,6 +20,11 @@ import android.widget.TextView;
 
 import com.bhm.sdk.bhmlibrary.R;
 import com.bhm.sdk.bhmlibrary.utils.DisplayUtil;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
+import androidx.core.content.ContextCompat;
 
 
 /** 标题栏 view
@@ -55,6 +59,7 @@ public class TitleBar extends RelativeLayout {
 		init(context, attrs);
 	}
 
+	@RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
 	public TitleBar(Context context, @Nullable AttributeSet attrs, int defStyleAttr, int defStyleRes) {
 		super(context, attrs, defStyleAttr, defStyleRes);
 		init(context, attrs);
@@ -95,6 +100,10 @@ public class TitleBar extends RelativeLayout {
 		float leftTextViewPaddingLeft = typedArray.getDimension(R.styleable.TitleBar_leftTextViewPaddingLeft, 4f);
 		float rightTextViewPaddingRight = typedArray.getDimension(R.styleable.TitleBar_rightTextViewPaddingRight, 4f);
 
+		int titleTextStyle = typedArray.getInt(R.styleable.TitleBar_titleTextStyle, 0);
+		int leftTextStyle = typedArray.getInt(R.styleable.TitleBar_leftTextStyle, 0);
+		int rightTextStyle = typedArray.getInt(R.styleable.TitleBar_rightTextStyle, 0);
+
 		setTitleBarHeight(titleBarHeight, false);
 		setDividerHeight(divider, false);
 		rl_base_title_bar.setBackgroundColor(backGroundColor);//设置背景颜色
@@ -112,6 +121,10 @@ public class TitleBar extends RelativeLayout {
 		tv_title_bar_left.setTextSize(TypedValue.COMPLEX_UNIT_PX, leftTextSize);
 		tv_title_bar_right.setTextSize(TypedValue.COMPLEX_UNIT_PX, rightTextSize);
 		tv_title_bar_title.setTextSize(TypedValue.COMPLEX_UNIT_PX, titleTextSize);
+
+		tv_title_bar_title.setTypeface(Typeface.defaultFromStyle(titleTextStyle));
+		tv_title_bar_left.setTypeface(Typeface.defaultFromStyle(leftTextStyle));
+		tv_title_bar_right.setTypeface(Typeface.defaultFromStyle(rightTextStyle));
 
 		setLeftViewMarginLeft(leftViewMarginLeft, false);
 		setRightViewMarginRight(rightViewMarginRight, false);
@@ -438,10 +451,24 @@ public class TitleBar extends RelativeLayout {
 		}
 		return this;
 	}
+
+	public TitleBar setTitleTextStyle(int typeface){
+		tv_title_bar_title.setTypeface(Typeface.defaultFromStyle(typeface));
+		return this;
+	}
+
+	public TitleBar setLeftTextStyle(int typeface){
+		tv_title_bar_left.setTypeface(Typeface.defaultFromStyle(typeface));
+		return this;
+	}
+
+	public TitleBar setRightTextStyle(int typeface){
+		tv_title_bar_right.setTypeface(Typeface.defaultFromStyle(typeface));
+		return this;
+	}
 	
 	
 	/** TitleBar左边和右边布局宽度不一样导致title不居中，设置左边和右边都宽度一样
-     * @param titleBar 
      */
     public void setTitleViewTitleInCenter(){
         ll_title_bar_left.post(new Runnable() {

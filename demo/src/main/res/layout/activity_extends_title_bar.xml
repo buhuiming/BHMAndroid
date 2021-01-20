@@ -38,9 +38,10 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="right|center_vertical"
-            android:textSize="15sp"
             app:drawableRightHintResource="@drawable/arrow_left"
             app:drawableRightResource="@drawable/arrow_left1"
+            app:drawableSize="18dp"
+            app:textSize="15sp"
             app:drawableRightPaddingLeft="6dp"
             app:hintText="请选择"/>
     </LinearLayout>
