@@ -40,9 +40,9 @@
             android:gravity="right|center_vertical"
             app:drawableRightHintResource="@drawable/arrow_left"
             app:drawableRightResource="@drawable/arrow_left1"
-            app:drawableSize="18dp"
+            app:drawableSize="14dp"
             app:textSize="15sp"
-            app:drawableRightPaddingLeft="6dp"
+            app:drawableRightPaddingLeft="20dp"
             app:hintText="请选择"/>
     </LinearLayout>
 

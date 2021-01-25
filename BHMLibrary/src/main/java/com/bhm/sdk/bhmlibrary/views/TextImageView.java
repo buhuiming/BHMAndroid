@@ -96,11 +96,13 @@ public class TextImageView extends LinearLayout {
     }
 
     public void setDrawableRightPaddingLeft(float paddingLeft, boolean isDip){
+        LayoutParams params = (LayoutParams) iv_image.getLayoutParams();
         if(isDip) {
-            iv_image.setPadding(DisplayUtil.dp2px(getContext(), paddingLeft), 0, 0, 0);
+            params.leftMargin = DisplayUtil.dp2px(getContext(), paddingLeft);
         }else{
-            iv_image.setPadding((int) paddingLeft, 0, 0, 0);
+            params.leftMargin = (int) paddingLeft;
         }
+        iv_image.setLayoutParams(params);
     }
 
     public void setDrawableSize(float drawableSize, boolean isDip){
