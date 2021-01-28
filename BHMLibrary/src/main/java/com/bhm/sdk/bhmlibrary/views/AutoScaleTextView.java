@@ -3,12 +3,13 @@ package com.bhm.sdk.bhmlibrary.views;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Paint;
-import androidx.annotation.Nullable;
-import androidx.appcompat.widget.AppCompatTextView;
 import android.util.AttributeSet;
 import android.util.TypedValue;
 
 import com.bhm.sdk.bhmlibrary.R;
+
+import androidx.annotation.Nullable;
+import androidx.appcompat.widget.AppCompatTextView;
 
 /**
  * 固定宽度，根据内容自动缩小字体大小。
@@ -16,11 +17,12 @@ import com.bhm.sdk.bhmlibrary.R;
 public class AutoScaleTextView extends AppCompatTextView {
 
     private float preferredTextSize;
-    private float minTextSize;
+    private float minTextSize = 10f;
     private Paint textPaint;
 
     public AutoScaleTextView(Context context) {
         super(context);
+        init(context, null);
     }
 
     public AutoScaleTextView(Context context, @Nullable AttributeSet attrs) {
@@ -35,10 +37,13 @@ public class AutoScaleTextView extends AppCompatTextView {
 
     private void init(Context context, @Nullable AttributeSet attrs){
         this.textPaint = new Paint();
+        this.preferredTextSize = this.getTextSize();
+        if(attrs == null){
+            return;
+        }
         TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.AutoScaleTextView);
         this.minTextSize = a.getDimension(R.styleable.AutoScaleTextView_minTextSize, 10f);
         a.recycle();
-        this.preferredTextSize = this.getTextSize();
     }
 
     /**
