@@ -7,7 +7,6 @@ import android.graphics.Typeface;
 import android.os.Build;
 import android.text.TextUtils;
 import android.util.AttributeSet;
-import android.util.TypedValue;
 import android.view.GestureDetector;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -118,9 +117,9 @@ public class TitleBar extends RelativeLayout {
 		setIsRightViewShow(isRightViewShow);//是否显示右边图片
 		setLeftViewBackgroundResource(leftViewBackgroundResource);//左边的Image
 		setRightViewBackgroundResource(rightViewBackgroundResource);//右边的Image
-		tv_title_bar_left.setTextSize(TypedValue.COMPLEX_UNIT_PX, leftTextSize);
-		tv_title_bar_right.setTextSize(TypedValue.COMPLEX_UNIT_PX, rightTextSize);
-		tv_title_bar_title.setTextSize(TypedValue.COMPLEX_UNIT_PX, titleTextSize);
+		tv_title_bar_left.setTextSize(leftTextSize);
+		tv_title_bar_right.setTextSize(rightTextSize);
+		tv_title_bar_title.setTextSize(titleTextSize);
 
 		tv_title_bar_title.setTypeface(Typeface.defaultFromStyle(titleTextStyle));
 		tv_title_bar_left.setTypeface(Typeface.defaultFromStyle(leftTextStyle));

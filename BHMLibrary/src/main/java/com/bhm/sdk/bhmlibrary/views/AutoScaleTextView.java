@@ -55,6 +55,9 @@ public class AutoScaleTextView extends AppCompatTextView {
         this.minTextSize = minTextSize;
     }
 
+    public void setTextSize(float textSize) {
+        this.preferredTextSize = textSize;
+    }
     /**
      * 根据填充内容调整textView
      *

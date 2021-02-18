@@ -22,7 +22,7 @@
         app:isRightViewShow="true"
         app:dividerHeight="1dp"
         app:leftTextSize="14sp"
-        app:titleTextSize="17sp"
+        app:titleTextSize="18sp"
         app:rightTextSize="14sp"
         app:leftViewMarginLeft ="15dp"
         app:leftTextViewPaddingLeft ="4dp"
