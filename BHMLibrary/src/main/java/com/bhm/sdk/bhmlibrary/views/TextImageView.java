@@ -173,19 +173,19 @@ public class TextImageView extends LinearLayout {
         }
     }
 
-    private void setHintTextColor(int hintTextColor){
+    public void setHintTextColor(int hintTextColor){
         this.hintTextColor = hintTextColor;
     }
 
-    private void setTextColor(int textColor){
+    public void setTextColor(int textColor){
         this.textColor = textColor;
     }
 
-    private ImageView getImageView(){
+    public ImageView getImageView(){
         return iv_image;
     }
 
-    private TextView getTextView(){
+    public TextView getTextView(){
         return tv_text;
     }
 }
