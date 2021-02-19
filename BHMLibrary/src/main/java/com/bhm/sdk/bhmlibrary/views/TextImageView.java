@@ -49,36 +49,34 @@ public class TextImageView extends LinearLayout {
     }
 
     private void init(Context context, AttributeSet attrs){
-        if(null == attrs){
-            return;
-        }
         LayoutInflater.from(context).inflate(R.layout.layout_text_image, this);
         iv_image = (ImageView) findViewById(R.id.iv_image);
         tv_text = (TextView) findViewById(R.id.tv_text);
-
-        TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.TextImageView);
-        hintText = typedArray.getString(R.styleable.TextImageView_hintText);
-        hintTextColor = typedArray.getColor(R.styleable.TextImageView_hintTextColor, ContextCompat.
-                getColor(context, R.color.hint));
-        textColor = typedArray.getColor(R.styleable.TextImageView_textColor, ContextCompat.
-                getColor(context, R.color.black));
-        drawableRightResource = typedArray.getResourceId(R.styleable.TextImageView_drawableRightResource,
-                -100);
-        drawableRightHintResource = typedArray.getResourceId(R.styleable.TextImageView_drawableRightHintResource,
-                -100);
-        float textSize = typedArray.getDimensionPixelSize(R.styleable.TextImageView_textSize, 42);
-        float drawableRightPaddingLeft = typedArray.getDimension(R.styleable.TextImageView_drawableRightPaddingLeft, 6f);
-        float drawableSize = typedArray.getDimension(R.styleable.TextImageView_drawableSize, 14f);
-        int maxLines = typedArray.getInt(R.styleable.TextImageView_maxLines, 1);
-        int textStyle = typedArray.getInt(R.styleable.TextImageView_textStyle, 0);
-        setMaxLines(maxLines);
-        setDrawableRightHintResource(drawableRightHintResource);
-        setDrawableRightPaddingLeft(drawableRightPaddingLeft, false);
-        setDrawableSize(drawableSize, false);
-        setHintText(hintText);
-        tv_text.setTextSize(TypedValue.COMPLEX_UNIT_PX, textSize);
-        tv_text.setTypeface(Typeface.defaultFromStyle(textStyle));
-        typedArray.recycle();
+        if(null != attrs){
+            TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.TextImageView);
+            hintText = typedArray.getString(R.styleable.TextImageView_hintText);
+            hintTextColor = typedArray.getColor(R.styleable.TextImageView_hintTextColor, ContextCompat.
+                    getColor(context, R.color.hint));
+            textColor = typedArray.getColor(R.styleable.TextImageView_textColor, ContextCompat.
+                    getColor(context, R.color.black));
+            drawableRightResource = typedArray.getResourceId(R.styleable.TextImageView_drawableRightResource,
+                    -100);
+            drawableRightHintResource = typedArray.getResourceId(R.styleable.TextImageView_drawableRightHintResource,
+                    -100);
+            float textSize = typedArray.getDimensionPixelSize(R.styleable.TextImageView_textSize, 42);
+            float drawableRightPaddingLeft = typedArray.getDimension(R.styleable.TextImageView_drawableRightPaddingLeft, 6f);
+            float drawableSize = typedArray.getDimension(R.styleable.TextImageView_drawableSize, 14f);
+            int maxLines = typedArray.getInt(R.styleable.TextImageView_maxLines, 1);
+            int textStyle = typedArray.getInt(R.styleable.TextImageView_textStyle, 0);
+            setMaxLines(maxLines);
+            setDrawableRightHintResource(drawableRightHintResource);
+            setDrawableRightPaddingLeft(drawableRightPaddingLeft, false);
+            setDrawableSize(drawableSize, false);
+            setHintText(hintText);
+            tv_text.setTextSize(TypedValue.COMPLEX_UNIT_PX, textSize);
+            tv_text.setTypeface(Typeface.defaultFromStyle(textStyle));
+            typedArray.recycle();
+        }
     }
 
     public void setMaxLines(int lines){
