@@ -116,10 +116,11 @@ public class TextImageView extends LinearLayout {
     }
 
     public void setHintText(){
-        setHintText(null);
+        setHintText("");
     }
 
     public void setHintText(String text){
+        this.hintText = text;
         if(TextUtils.isEmpty(text)) {
             tv_text.setText(hintText);
         }else{

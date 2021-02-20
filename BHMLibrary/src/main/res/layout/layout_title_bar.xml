@@ -24,7 +24,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
 
-            <com.bhm.sdk.bhmlibrary.views.AutoScaleTextView
+            <TextView
                 android:id="@+id/tv_title_bar_left"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -33,7 +33,6 @@
                 android:gravity="left|center_vertical"
                 android:textColor="@android:color/black"
                 android:lines="1"
-                app:minTextSize="8sp"
                 android:textSize="16sp" />
         </LinearLayout>
 
@@ -45,7 +44,7 @@
             android:gravity="center_vertical"
             android:layout_alignParentRight="true">
 
-            <com.bhm.sdk.bhmlibrary.views.AutoScaleTextView
+            <TextView
                 android:id="@+id/tv_title_bar_right"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -53,7 +52,6 @@
                 android:gravity="right|center_vertical"
                 android:maxWidth="64dp"
                 android:lines="1"
-                app:minTextSize="8sp"
                 android:textColor="@android:color/black"
                 android:textSize="16sp" />
 

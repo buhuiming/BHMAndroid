@@ -7,6 +7,7 @@ import android.graphics.Typeface;
 import android.os.Build;
 import android.text.TextUtils;
 import android.util.AttributeSet;
+import android.util.TypedValue;
 import android.view.GestureDetector;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -36,8 +37,8 @@ public class TitleBar extends RelativeLayout {
 	private AutoScaleTextView tv_title_bar_title;//标题
 	private ImageView img_title_bar_left;//左边image
 	private ImageView img_title_bar_right;//右边image
-	private AutoScaleTextView tv_title_bar_left;//左边文字
-	private AutoScaleTextView tv_title_bar_right;//右边文字
+	private TextView tv_title_bar_left;//左边文字
+	private TextView tv_title_bar_right;//右边文字
 	private RelativeLayout rl_base_title_bar;
 	private LinearLayout ll_title_bar_left;
 	private LinearLayout ll_title_bar_right;
@@ -117,8 +118,8 @@ public class TitleBar extends RelativeLayout {
 		setIsRightViewShow(isRightViewShow);//是否显示右边图片
 		setLeftViewBackgroundResource(leftViewBackgroundResource);//左边的Image
 		setRightViewBackgroundResource(rightViewBackgroundResource);//右边的Image
-		tv_title_bar_left.setTextSize(leftTextSize);
-		tv_title_bar_right.setTextSize(rightTextSize);
+		tv_title_bar_left.setTextSize(TypedValue.COMPLEX_UNIT_PX, leftTextSize);
+		tv_title_bar_right.setTextSize(TypedValue.COMPLEX_UNIT_PX, rightTextSize);
 		tv_title_bar_title.setTextSize(titleTextSize);
 
 		tv_title_bar_title.setTypeface(Typeface.defaultFromStyle(titleTextStyle));
@@ -138,15 +139,15 @@ public class TitleBar extends RelativeLayout {
 		// 加载布局
 		LayoutInflater.from(context).inflate(R.layout.layout_title_bar, this);
 		// 获取控件
-		tv_title_bar_title = (AutoScaleTextView) findViewById(R.id.tv_title_bar_title);
-		img_title_bar_left = (ImageView) findViewById(R.id.img_title_bar_left);
-		img_title_bar_right = (ImageView) findViewById(R.id.img_title_bar_right);
-		tv_title_bar_left = (AutoScaleTextView) findViewById(R.id.tv_title_bar_left);
-		tv_title_bar_right = (AutoScaleTextView) findViewById(R.id.tv_title_bar_right);
-		rl_base_title_bar = (RelativeLayout) findViewById(R.id.rl_base_title_bar);
-		ll_title_bar_left = (LinearLayout) findViewById(R.id.ll_title_bar_left);
-		ll_title_bar_right = (LinearLayout) findViewById(R.id.ll_title_bar_right);
-		view_divider = (View) findViewById(R.id.view_divider);
+		tv_title_bar_title = findViewById(R.id.tv_title_bar_title);
+		img_title_bar_left = findViewById(R.id.img_title_bar_left);
+		img_title_bar_right = findViewById(R.id.img_title_bar_right);
+		tv_title_bar_left = findViewById(R.id.tv_title_bar_left);
+		tv_title_bar_right = findViewById(R.id.tv_title_bar_right);
+		rl_base_title_bar = findViewById(R.id.rl_base_title_bar);
+		ll_title_bar_left = findViewById(R.id.ll_title_bar_left);
+		ll_title_bar_right = findViewById(R.id.ll_title_bar_right);
+		view_divider = findViewById(R.id.view_divider);
 	}
 
 	public TitleBar setLeftViewMarginLeft(float leftViewMarginLeft, boolean isDpValue){
@@ -421,16 +422,6 @@ public class TitleBar extends RelativeLayout {
 			img_title_bar_left.setVisibility(View.VISIBLE);
 			img_title_bar_left.setBackgroundResource(res);
 		}
-		return this;
-	}
-
-	public TitleBar setLeftTextMinTextSize(float minTextSize){
-		tv_title_bar_left.setMinTextSize(minTextSize);
-		return this;
-	}
-
-	public TitleBar setRightTextMinTextSize(float minTextSize){
-		tv_title_bar_right.setMinTextSize(minTextSize);
 		return this;
 	}
 
