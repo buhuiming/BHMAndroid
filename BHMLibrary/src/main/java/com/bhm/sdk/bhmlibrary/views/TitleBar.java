@@ -186,18 +186,30 @@ public class TitleBar extends RelativeLayout {
 		return  this;
 	}
 
-	public TitleBar setLeftTextSize(float size){
-		tv_title_bar_left.setTextSize(size);
+	public TitleBar setLeftTextSize(float size, boolean px){
+		if(px){
+			tv_title_bar_left.setTextSize(TypedValue.COMPLEX_UNIT_PX, size);
+		}else {
+			tv_title_bar_left.setTextSize(size);
+		}
 		return this;
 	}
 
-	public TitleBar setRightTextSize(float size){
-		tv_title_bar_right.setTextSize(size);
+	public TitleBar setRightTextSize(float size, boolean px){
+		if(px){
+			tv_title_bar_right.setTextSize(TypedValue.COMPLEX_UNIT_PX, size);
+		}else {
+			tv_title_bar_right.setTextSize(size);
+		}
 		return this;
 	}
 
-	public TitleBar setTitleTextSize(float size){
-		tv_title_bar_title.setTextSize(size);
+	public TitleBar setTitleTextSize(float size, boolean px){
+		if(px){
+			tv_title_bar_title.setTextSize(TypedValue.COMPLEX_UNIT_PX, size);
+		}else {
+			tv_title_bar_title.setTextSize(size);
+		}
 		return this;
 	}
 

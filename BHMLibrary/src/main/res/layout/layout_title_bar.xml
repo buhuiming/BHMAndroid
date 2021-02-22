@@ -50,7 +50,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:gravity="right|center_vertical"
-                android:maxWidth="64dp"
+                android:maxWidth="128dp"
                 android:lines="1"
                 android:textColor="@android:color/black"
                 android:textSize="16sp" />
