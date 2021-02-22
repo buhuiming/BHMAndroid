@@ -130,6 +130,7 @@ public class TitleBar extends RelativeLayout {
 		setRightViewMarginRight(rightViewMarginRight, false);
 		setLeftTextViewPaddingLeft(leftTextViewPaddingLeft, false);
 		setRightTextViewPaddingRight(rightTextViewPaddingRight, false);
+		setTitleViewTitleInCenter();
 
 		typedArray.recycle();
 	}
@@ -201,6 +202,7 @@ public class TitleBar extends RelativeLayout {
 		}else {
 			tv_title_bar_right.setTextSize(size);
 		}
+		setTitleViewTitleInCenter();
 		return this;
 	}
 
@@ -252,6 +254,7 @@ public class TitleBar extends RelativeLayout {
 		}else {
 			tv_title_bar_title.setText(title);
 		}
+		setTitleViewTitleInCenter();
 		return this;
 	}
 
@@ -291,6 +294,7 @@ public class TitleBar extends RelativeLayout {
 		}else {
 			tv_title_bar_left.setText(title);
 		}
+		setTitleViewTitleInCenter();
 		return this;
 	}
 
