@@ -1,23 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:background="@color/white">
 
     <RelativeLayout
         android:id="@+id/rl_base_title_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
+        <com.bhm.sdk.bhmlibrary.views.AutoScaleTextView
+            android:id="@+id/tv_title_bar_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:lines="1"
+            app:minTextSize="8sp"
+            android:textColor="@android:color/black"
+            android:textSize="18sp" />
+
         <LinearLayout
             android:id="@+id/ll_title_bar_left"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_alignParentLeft="true"
-            android:gravity="center_vertical"
-            android:minWidth="50dp"
-            tools:ignore="UseCompoundDrawables" >
+            android:layout_toStartOf="@id/tv_title_bar_title"
+            android:layout_alignParentStart="true"
+            android:gravity="center_vertical|start"
+            android:minWidth="50dp" >
 
             <ImageView
                 android:id="@+id/img_title_bar_left"
@@ -29,10 +40,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:maxWidth="64dp"
-                android:layout_marginRight="10dp"
-                android:gravity="left|center_vertical"
+                android:layout_marginEnd="10dp"
+                android:gravity="start|center_vertical"
                 android:textColor="@android:color/black"
                 android:lines="1"
+                android:ellipsize="end"
                 android:textSize="16sp" />
         </LinearLayout>
 
@@ -40,18 +52,20 @@
             android:id="@+id/ll_title_bar_right"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
+            android:layout_toEndOf="@id/tv_title_bar_title"
             android:minWidth="50dp"
-            android:gravity="center_vertical"
-            android:layout_alignParentRight="true">
+            android:gravity="center_vertical|end"
+            android:layout_alignParentEnd="true">
 
             <TextView
                 android:id="@+id/tv_title_bar_right"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:gravity="right|center_vertical"
+                android:layout_marginStart="10dp"
+                android:gravity="end|center_vertical"
                 android:maxWidth="128dp"
                 android:lines="1"
+                android:ellipsize="end"
                 android:textColor="@android:color/black"
                 android:textSize="16sp" />
 
@@ -59,22 +73,7 @@
                 android:id="@+id/img_title_bar_right"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
-
         </LinearLayout>
-
-        <com.bhm.sdk.bhmlibrary.views.AutoScaleTextView
-            android:id="@+id/tv_title_bar_title"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:gravity="center"
-            android:layout_toRightOf="@id/ll_title_bar_left"
-            android:layout_toLeftOf="@id/ll_title_bar_right"
-            android:lines="1"
-            app:minTextSize="8sp"
-            android:textColor="@android:color/black"
-            android:textSize="18sp" />
-
     </RelativeLayout>
 
     <View
@@ -82,5 +81,4 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/rl_base_title_bar"/>
-
 </RelativeLayout>

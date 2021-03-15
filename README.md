@@ -10,7 +10,7 @@ BHMAndroid工程：一些常用的工具类，以及常用的控件，主要用�
 
 集成：
 -------
-        compile 'com.bhm.sdk.bhmlibrary:BHMLibrary:1.4.7'
+        compile 'com.bhm.sdk.bhmlibrary:BHMLibrary:1.4.8'
 
         
 #### 目前库包含了一些项目中常用的模块，后续会慢慢的添加完善。
@@ -67,7 +67,7 @@ BHMAndroid工程：一些常用的工具类，以及常用的控件，主要用�
         >优化一些场景，添加androidx的懒加载LazyLoadFragmentAndroidx
    * 1.3.3——1.3.4</br>
         >StatusLayoutManager和ActivityResult迁移合并在一起，修复android11相册剪裁保存失败问题
-   * 1.3.4——1.4.7</br>
+   * 1.3.4——1.4.8</br>
         >TitleBar、TextImageView添加setTypeface方法，修复若干Bug
 
 ### 

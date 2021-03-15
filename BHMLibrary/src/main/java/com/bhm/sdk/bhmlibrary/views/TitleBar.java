@@ -130,7 +130,6 @@ public class TitleBar extends RelativeLayout {
 		setRightViewMarginRight(rightViewMarginRight, false);
 		setLeftTextViewPaddingLeft(leftTextViewPaddingLeft, false);
 		setRightTextViewPaddingRight(rightTextViewPaddingRight, false);
-		setTitleViewTitleInCenter();
 
 		typedArray.recycle();
 	}
@@ -202,7 +201,6 @@ public class TitleBar extends RelativeLayout {
 		}else {
 			tv_title_bar_right.setTextSize(size);
 		}
-		setTitleViewTitleInCenter();
 		return this;
 	}
 
@@ -254,7 +252,6 @@ public class TitleBar extends RelativeLayout {
 		}else {
 			tv_title_bar_title.setText(title);
 		}
-		setTitleViewTitleInCenter();
 		return this;
 	}
 
@@ -294,7 +291,6 @@ public class TitleBar extends RelativeLayout {
 		}else {
 			tv_title_bar_left.setText(title);
 		}
-		setTitleViewTitleInCenter();
 		return this;
 	}
 
@@ -473,9 +469,9 @@ public class TitleBar extends RelativeLayout {
 		return this;
 	}
 	
-	
 	/** TitleBar左边和右边布局宽度不一样导致title不居中，设置左边和右边都宽度一样
      */
+	@Deprecated
     public void setTitleViewTitleInCenter(){
         ll_title_bar_left.post(new Runnable() {
             @Override
