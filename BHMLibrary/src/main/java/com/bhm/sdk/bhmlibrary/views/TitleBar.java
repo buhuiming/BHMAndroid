@@ -34,7 +34,7 @@ import androidx.core.content.ContextCompat;
 public class TitleBar extends RelativeLayout {
 
 	private Context context;
-	private AutoScaleTextView tv_title_bar_title;//标题
+	private TextView tv_title_bar_title;//标题
 	private ImageView img_title_bar_left;//左边image
 	private ImageView img_title_bar_right;//右边image
 	private TextView tv_title_bar_left;//左边文字
@@ -120,7 +120,7 @@ public class TitleBar extends RelativeLayout {
 		setRightViewBackgroundResource(rightViewBackgroundResource);//右边的Image
 		tv_title_bar_left.setTextSize(TypedValue.COMPLEX_UNIT_PX, leftTextSize);
 		tv_title_bar_right.setTextSize(TypedValue.COMPLEX_UNIT_PX, rightTextSize);
-		tv_title_bar_title.setTextSize(titleTextSize);
+		tv_title_bar_title.setTextSize(TypedValue.COMPLEX_UNIT_PX, titleTextSize);
 
 		tv_title_bar_title.setTypeface(Typeface.defaultFromStyle(titleTextStyle));
 		tv_title_bar_left.setTypeface(Typeface.defaultFromStyle(leftTextStyle));
@@ -434,11 +434,6 @@ public class TitleBar extends RelativeLayout {
 			img_title_bar_left.setVisibility(View.VISIBLE);
 			img_title_bar_left.setBackgroundResource(res);
 		}
-		return this;
-	}
-
-	public TitleBar setTitleTextMinTextSize(float minTextSize){
-		tv_title_bar_title.setMinTextSize(minTextSize);
 		return this;
 	}
 
