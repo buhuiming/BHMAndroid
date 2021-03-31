@@ -1,5 +1,4 @@
 apply plugin: 'com.android.library'
-apply plugin: 'com.novoda.bintray-release'
 
 android {
     compileSdkVersion 29
@@ -38,7 +37,6 @@ ext {
     PUBLISH_ARTIFACT_ID = 'BHMLibrary'
     PUBLISH_VERSION = '1.5.0'
 }
-apply from: 'https://raw.githubusercontent.com/blundell/release-android-library/master/android-release-aar.gradle'
 //这句话报错，确保hosts文件加入以下内容，并重启AS
 //# GitHub Start
 //52.74.223.119 github.com
